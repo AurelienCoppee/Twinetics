@@ -1,4 +1,4 @@
-package dev.rahmouni.neil.counters
+package dev.coppee.aurelien.twinetics
 
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.dsl.ApplicationProductFlavor

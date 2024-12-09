@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 Rahmouni Neïl & Aurélien Coppée
+ * Copyright (C) 2025 Aurélien Coppée
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import dev.rahmouni.neil.counters.Rn3BuildType
+import dev.coppee.aurelien.twinetics.Rn3BuildType
 
 plugins {
     alias(libs.plugins.rn3.android.application)
@@ -30,12 +30,12 @@ plugins {
 
 android {
     defaultConfig {
-        applicationId = "rahmouni.neil.rebased"
-        versionCode = 2
-        versionName = "0.0.2" // X.Y.Z; X = Major, Y = minor, Z = Patch level
+        applicationId = "coppee.aurelien.twinetics"
+        versionCode = 1
+        versionName = "0.0.1" // X.Y.Z; X = Major, Y = minor, Z = Patch level
 
         // Custom test runner to set up Hilt dependency graph
-        testInstrumentationRunner = "dev.rahmouni.neil.counters.core.testing.Rn3TestRunner"
+        testInstrumentationRunner = "dev.coppee.aurelien.twinetics.core.testing.TestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -77,7 +77,7 @@ android {
             isIncludeAndroidResources = true
         }
     }
-    namespace = "rahmouni.neil.counters"
+    namespace = "coppee.aurelien.twinetics"
 }
 
 dependencies {

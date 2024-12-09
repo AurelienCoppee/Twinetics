@@ -1,11 +1,11 @@
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import com.android.build.gradle.LibraryExtension
-import dev.rahmouni.neil.counters.configureFlavors
-import dev.rahmouni.neil.counters.configureGradleManagedDevices
-import dev.rahmouni.neil.counters.configureKotlinAndroid
-import dev.rahmouni.neil.counters.configurePrintApksTask
-import dev.rahmouni.neil.counters.disableUnnecessaryAndroidTests
-import dev.rahmouni.neil.counters.libs
+import dev.coppee.aurelien.twinetics.configureFlavors
+import dev.coppee.aurelien.twinetics.configureGradleManagedDevices
+import dev.coppee.aurelien.twinetics.configureKotlinAndroid
+import dev.coppee.aurelien.twinetics.configurePrintApksTask
+import dev.coppee.aurelien.twinetics.disableUnnecessaryAndroidTests
+import dev.coppee.aurelien.twinetics.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure

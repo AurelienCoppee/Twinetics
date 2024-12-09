@@ -15,7 +15,7 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "ReBased"
+rootProject.name = "Twinetics"
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 

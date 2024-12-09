@@ -1,4 +1,4 @@
-import dev.rahmouni.neil.counters.libs
+import dev.coppee.aurelien.twinetics.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies

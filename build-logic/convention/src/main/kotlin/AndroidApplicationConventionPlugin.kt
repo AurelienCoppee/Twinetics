@@ -1,10 +1,10 @@
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.variant.ApplicationAndroidComponentsExtension
 import com.android.build.gradle.BaseExtension
-import dev.rahmouni.neil.counters.configureBadgingTasks
-import dev.rahmouni.neil.counters.configureGradleManagedDevices
-import dev.rahmouni.neil.counters.configureKotlinAndroid
-import dev.rahmouni.neil.counters.configurePrintApksTask
+import dev.coppee.aurelien.twinetics.configureBadgingTasks
+import dev.coppee.aurelien.twinetics.configureGradleManagedDevices
+import dev.coppee.aurelien.twinetics.configureKotlinAndroid
+import dev.coppee.aurelien.twinetics.configurePrintApksTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure

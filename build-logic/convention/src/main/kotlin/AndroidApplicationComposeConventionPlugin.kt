@@ -1,5 +1,5 @@
 import com.android.build.api.dsl.ApplicationExtension
-import dev.rahmouni.neil.counters.configureAndroidCompose
+import dev.coppee.aurelien.twinetics.configureAndroidCompose
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply

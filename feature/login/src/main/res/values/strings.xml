@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="feature_login_welcomeMessage_start">"Welcome to "</string>
-    <string name="feature_login_welcomeMessage_appName" translatable="false">Rebased</string>
+    <string name="feature_login_welcomeMessage_appName" translatable="false">Twinetics</string>
     <string name="feature_login_welcomeMessage_ending">!</string>
     <string name="feature_login_choose">Continue with:</string>
     <string name="feature_login_withoutAccount">Without an account</string>

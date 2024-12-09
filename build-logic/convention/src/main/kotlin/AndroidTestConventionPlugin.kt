@@ -1,6 +1,6 @@
 import com.android.build.gradle.TestExtension
-import dev.rahmouni.neil.counters.configureGradleManagedDevices
-import dev.rahmouni.neil.counters.configureKotlinAndroid
+import dev.coppee.aurelien.twinetics.configureGradleManagedDevices
+import dev.coppee.aurelien.twinetics.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure

@@ -1,4 +1,4 @@
-package dev.rahmouni.neil.counters
+package dev.coppee.aurelien.twinetics
 
 /**
  * This is shared between :app and :benchmarks module to provide configurations type safety.

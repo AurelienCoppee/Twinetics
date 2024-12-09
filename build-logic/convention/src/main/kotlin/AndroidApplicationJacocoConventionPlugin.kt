@@ -1,6 +1,6 @@
 import com.android.build.api.variant.ApplicationAndroidComponentsExtension
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
-import dev.rahmouni.neil.counters.configureJacoco
+import dev.coppee.aurelien.twinetics.configureJacoco
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType

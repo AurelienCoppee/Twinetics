@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-    Copyright (C) 2024 Rahmouni Neïl & Aurélien Coppée
+    Copyright (C) 2025 Aurélien Coppée
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@
         tools:node="remove" />
 
     <application
-        android:name="dev.rahmouni.neil.counters.Application"
+        android:name="dev.coppee.aurelien.twinetics.Application"
         android:allowBackup="true"
         android:enableOnBackInvokedCallback="true"
         android:icon="@mipmap/ic_launcher"
@@ -44,7 +44,7 @@
             tools:targetApi="q" />
 
         <activity
-            android:name="dev.rahmouni.neil.counters.MainActivity"
+            android:name="dev.coppee.aurelien.twinetics.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

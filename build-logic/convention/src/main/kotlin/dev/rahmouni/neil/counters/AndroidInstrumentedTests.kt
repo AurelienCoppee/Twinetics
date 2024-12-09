@@ -1,4 +1,4 @@
-package dev.rahmouni.neil.counters
+package dev.coppee.aurelien.twinetics
 
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import org.gradle.api.Project

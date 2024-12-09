@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 Rahmouni Neïl & Aurélien Coppée
+ * Copyright (C) 2025 Aurélien Coppée
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ plugins {
 }
 
 android {
-    namespace = "dev.rahmouni.neil.counters.core.testing"
+    namespace = "dev.coppee.aurelien.twinetics.core.testing"
 }
 
 dependencies {

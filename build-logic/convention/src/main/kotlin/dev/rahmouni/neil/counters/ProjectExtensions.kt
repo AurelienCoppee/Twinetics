@@ -1,4 +1,4 @@
-package dev.rahmouni.neil.counters
+package dev.coppee.aurelien.twinetics
 
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalog

@@ -1,4 +1,4 @@
-import dev.rahmouni.neil.counters.configureKotlinJvm
+import dev.coppee.aurelien.twinetics.configureKotlinJvm
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 

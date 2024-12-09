@@ -1,6 +1,6 @@
 import com.android.build.gradle.LibraryExtension
-import dev.rahmouni.neil.counters.configureGradleManagedDevices
-import dev.rahmouni.neil.counters.libs
+import dev.coppee.aurelien.twinetics.configureGradleManagedDevices
+import dev.coppee.aurelien.twinetics.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -16,7 +16,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
             extensions.configure<LibraryExtension> {
                 defaultConfig {
                     testInstrumentationRunner =
-                        "dev.rahmouni.neil.counters.core.testing.Rn3TestRunner"
+                        "dev.coppee.aurelien.twinetics.core.testing.Rn3TestRunner"
                 }
                 testOptions.animationsDisabled = true
                 configureGradleManagedDevices(this)
