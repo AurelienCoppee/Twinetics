@@ -20,54 +20,12 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import dev.coppee.aurelien.twinetics.core.data.repository.eventFeedData.EventFeedDataRepository
-import dev.coppee.aurelien.twinetics.core.data.repository.eventFeedData.FirestoreEventFeedDataRepository
-import dev.coppee.aurelien.twinetics.core.data.repository.friendData.FirestoreFriendsDataRepository
-import dev.coppee.aurelien.twinetics.core.data.repository.friendData.FriendsDataRepository
-import dev.coppee.aurelien.twinetics.core.data.repository.friendFeedData.FirestoreFriendFeedDataRepository
-import dev.coppee.aurelien.twinetics.core.data.repository.friendFeedData.FriendFeedDataRepository
 import dev.coppee.aurelien.twinetics.core.data.repository.linksRn3UrlData.FirestoreLinksRn3UrlDataRepository
 import dev.coppee.aurelien.twinetics.core.data.repository.linksRn3UrlData.LinksRn3UrlDataRepository
-import dev.coppee.aurelien.twinetics.core.data.repository.publicFeedData.FirestorePublicFeedDataRepository
-import dev.coppee.aurelien.twinetics.core.data.repository.publicFeedData.PublicFeedDataRepository
-import dev.coppee.aurelien.twinetics.core.data.repository.triagingData.FirestoreTriagingDataRepository
-import dev.coppee.aurelien.twinetics.core.data.repository.triagingData.TriagingDataRepository
-import dev.coppee.aurelien.twinetics.core.data.repository.userData.OfflineFirstUserDataRepository
-import dev.coppee.aurelien.twinetics.core.data.repository.userData.UserDataRepository
 
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class DataModule {
-
-    @Binds
-    internal abstract fun bindsUserDataRepository(
-        userDataRepository: OfflineFirstUserDataRepository,
-    ): UserDataRepository
-
-    @Binds
-    internal abstract fun bindsFriendsDataRepository(
-        friendsDataRepository: FirestoreFriendsDataRepository,
-    ): FriendsDataRepository
-
-    @Binds
-    internal abstract fun bindsEventFeedDataRepository(
-        eventFeedDataRepository: FirestoreEventFeedDataRepository,
-    ): EventFeedDataRepository
-
-    @Binds
-    internal abstract fun bindsFriendFeedDataRepository(
-        friendFeedDataRepository: FirestoreFriendFeedDataRepository,
-    ): FriendFeedDataRepository
-
-    @Binds
-    internal abstract fun bindsPublicFeedDataRepository(
-        publicFeedDataRepository: FirestorePublicFeedDataRepository,
-    ): PublicFeedDataRepository
-
-    @Binds
-    internal abstract fun bindsTriagingDataRepository(
-        triagingDataRepository: FirestoreTriagingDataRepository,
-    ): TriagingDataRepository
 
     @Binds
     internal abstract fun bindsLinksRn3UrlDataRepository(

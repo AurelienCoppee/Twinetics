@@ -45,8 +45,6 @@ object PreviewParameterData {
         ),
         devSettingsEnabled = false,
         inAppUpdateData = NoUpdateAvailable,
-        hasTravelModeEnabled = false,
-        hasFriendsMainEnabled = false,
     )
     val settingsData_mutations = with(settingsData_default) {
         sequenceOf(
@@ -57,8 +55,6 @@ object PreviewParameterData {
             ),
             copy(devSettingsEnabled = true),
             copy(inAppUpdateData = UpdateAvailable(null, null)),
-            copy(hasTravelModeEnabled = false),
-            copy(hasFriendsMainEnabled = false),
         )
     }
 }

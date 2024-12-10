@@ -83,7 +83,6 @@ internal fun AccessibilitySettingsRoute(
         ).toTopAppBarAction(navController::navigateToFeedback),
         setEmphasizedSwitches = viewModel::setEmphasizedSwitches,
         setIconTooltips = viewModel::setIconTooltips,
-        setAltText = viewModel::setAltText,
         onClickAndroidAccessibilityTile = {
             analyticsHelper.logDataAndPrivacySettingsUiEvent("androidAccessibilityTile")
             context.openAndroidAccessibilitySettingsActivity()
@@ -102,7 +101,6 @@ internal fun AccessibilitySettingsScreen(
     feedbackTopAppBarAction: TopAppBarAction? = null,
     setEmphasizedSwitches: (Boolean) -> Unit = {},
     setIconTooltips: (Boolean) -> Unit = {},
-    setAltText: (Boolean) -> Unit = {},
     onClickAndroidAccessibilityTile: () -> Unit = {},
 ) {
     Rn3Scaffold(
@@ -118,7 +116,6 @@ internal fun AccessibilitySettingsScreen(
                 data = uiState.accessibilitySettingsData,
                 setEmphasizedSwitches = setEmphasizedSwitches,
                 setIconTooltips = setIconTooltips,
-                setAltText = setAltText,
                 onClickAndroidAccessibilityTile = onClickAndroidAccessibilityTile,
             )
         }
@@ -131,7 +128,6 @@ private fun AccessibilitySettingsPanel(
     data: AccessibilitySettingsData,
     setEmphasizedSwitches: (Boolean) -> Unit,
     setIconTooltips: (Boolean) -> Unit,
-    setAltText: (Boolean) -> Unit,
     onClickAndroidAccessibilityTile: () -> Unit,
 ) {
     Column(
@@ -154,15 +150,6 @@ private fun AccessibilitySettingsPanel(
             supportingText = stringResource(string.feature_settings_settingsScreen_iconTooltipsTile_supportingText),
             checked = data.hasIconTooltipsEnabled,
             onCheckedChange = setIconTooltips,
-        )
-
-        // iconTooltipsTile
-        Rn3TileSwitch(
-            title = stringResource(string.feature_settings_settingsScreen_iconAltTextTile_title),
-            icon = Outlined.Description,
-            supportingText = stringResource(string.feature_settings_settingsScreen_iconAltTextTile_supportingText),
-            checked = data.hasAltTextEnabled,
-            onCheckedChange = setAltText,
         )
 
         Rn3TileHorizontalDivider()
@@ -197,7 +184,6 @@ private fun UiStates(
         value = LocalAccessibilityHelper provides AccessibilityHelper(
             hasEmphasizedSwitchesEnabled = accessibilitySettingsData.hasEmphasizedSwitchesEnabled,
             hasIconTooltipsEnabled = accessibilitySettingsData.hasIconTooltipsEnabled,
-            hasAltTextEnabled = accessibilitySettingsData.hasAltTextEnabled,
         ),
     ) {
         Rn3Theme {

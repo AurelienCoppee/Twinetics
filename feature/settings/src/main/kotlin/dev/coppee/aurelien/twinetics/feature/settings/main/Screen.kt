@@ -38,10 +38,8 @@ import androidx.compose.material.icons.automirrored.outlined.Logout
 import androidx.compose.material.icons.outlined.AccessibilityNew
 import androidx.compose.material.icons.outlined.DataObject
 import androidx.compose.material.icons.outlined.Edit
-import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material.icons.outlined.FileDownload
 import androidx.compose.material.icons.outlined.Group
-import androidx.compose.material.icons.outlined.Public
 import androidx.compose.material.icons.outlined.RestartAlt
 import androidx.compose.material.icons.outlined.Shield
 import androidx.compose.material.icons.outlined.Warning
@@ -85,7 +83,6 @@ import dev.coppee.aurelien.twinetics.core.designsystem.component.tile.Rn3TileCli
 import dev.coppee.aurelien.twinetics.core.designsystem.component.tile.Rn3TileClickConfirmationDialog
 import dev.coppee.aurelien.twinetics.core.designsystem.component.tile.Rn3TileHorizontalDivider
 import dev.coppee.aurelien.twinetics.core.designsystem.component.tile.Rn3TileSmallHeader
-import dev.coppee.aurelien.twinetics.core.designsystem.component.tile.Rn3TileSwitch
 import dev.coppee.aurelien.twinetics.core.designsystem.component.user.UserAvatarAndName
 import dev.coppee.aurelien.twinetics.core.designsystem.icons.Contract
 import dev.coppee.aurelien.twinetics.core.designsystem.icons.DevicesOff
@@ -188,8 +185,6 @@ internal fun SettingsRoute(
             analytics.logSettingsUiEvent("informationTile")
             navigateToInformation()
         },
-        setTravelMode = viewModel::setTravelMode,
-        setFriendsMain = viewModel::setFriendsMain,
     )
 
     TrackScreenViewEvent(screenName = "Settings")
@@ -211,8 +206,6 @@ internal fun SettingsScreen(
     onClickDeveloperSettingsTile: () -> Unit = {},
     onClickOssLicensesTile: () -> Unit = {},
     onClickInfoTile: () -> Unit = {},
-    setTravelMode: (Boolean) -> Unit = {},
-    setFriendsMain: (Boolean) -> Unit = {},
 ) {
     Rn3Scaffold(
         modifier = modifier,
@@ -234,8 +227,6 @@ internal fun SettingsScreen(
                 onClickDeveloperSettingsTile = onClickDeveloperSettingsTile,
                 onClickOssLicensesTile = onClickOssLicensesTile,
                 onClickInfoTile = onClickInfoTile,
-                setTravelMode = setTravelMode,
-                setFriendsMain = setFriendsMain,
             )
         }
     }
@@ -254,8 +245,6 @@ private fun SettingsPanel(
     onClickDeveloperSettingsTile: () -> Unit,
     onClickOssLicensesTile: () -> Unit,
     onClickInfoTile: () -> Unit,
-    setTravelMode: (Boolean) -> Unit,
-    setFriendsMain: (Boolean) -> Unit,
 ) {
     val haptic = getHaptic()
 
@@ -407,24 +396,6 @@ private fun SettingsPanel(
             title = stringResource(string.feature_settings_settingsScreen_editInfoTile_title),
             icon = Outlined.Edit,
             onClick = onClickInfoTile,
-        )
-
-        // TravelModeTile
-        Rn3TileSwitch(
-            title = stringResource(string.feature_settings_mainScreen_travelModeTile_title),
-            icon = Outlined.Public,
-            supportingText = stringResource(string.feature_settings_mainScreen_travelModeTile_supportingText),
-            checked = data.hasTravelModeEnabled,
-            onCheckedChange = setTravelMode,
-        )
-
-        // MainFriendsTile
-        Rn3TileSwitch(
-            title = stringResource(string.feature_settings_mainScreen_friendsMainTile_title),
-            icon = Outlined.Favorite,
-            supportingText = stringResource(string.feature_settings_mainScreen_friendsMainTile_supportingText),
-            checked = data.hasFriendsMainEnabled,
-            onCheckedChange = setFriendsMain,
         )
 
         // dataAndPrivacyTile

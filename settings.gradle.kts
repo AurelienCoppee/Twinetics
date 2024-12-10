@@ -40,12 +40,10 @@ include(":core:testing")
 include(":core:ui")
 
 
-include(":feature:connect")
-include(":feature:events")
-include(":feature:feed")
-include(":feature:information")
+include(":feature:bluetooth")
+include(":feature:history")
 include(":feature:login")
-include(":feature:publication")
+include(":feature:record")
 include(":feature:settings")
 
 include(":lint")

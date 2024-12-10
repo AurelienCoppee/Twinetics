@@ -16,19 +16,11 @@
 
 package dev.coppee.aurelien.twinetics.core.model.data
 
-import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber
-
 data class UserData(
     val hasAccessibilityEmphasizedSwitchesEnabled: Boolean,
     val hasAccessibilityIconTooltipsEnabled: Boolean,
-    val hasAccessibilityAltTextEnabled: Boolean,
-    val hasTravelModeEnabled: Boolean,
-    val hasFriendsMainEnabled: Boolean,
     val hasMetricsEnabled: Boolean,
     val hasCrashlyticsEnabled: Boolean,
     val shouldShowLoginScreenOnStartup: Boolean,
-    val needInformation: Boolean,
     val isAppFirstLaunch: Boolean,
-    val address: AddressInfo,
-    val phone: PhoneNumber,
 )

@@ -83,11 +83,9 @@ android {
 dependencies {
     implementation(projects.feature.login)
     implementation(projects.feature.settings)
-    implementation(projects.feature.information)
-    implementation(projects.feature.publication)
-    implementation(projects.feature.feed)
-    implementation(projects.feature.events)
-    implementation(projects.feature.connect)
+    implementation(projects.feature.history)
+    implementation(projects.feature.bluetooth)
+    implementation(projects.feature.record)
 
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.metrics)

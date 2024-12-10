@@ -43,16 +43,6 @@ internal fun AnalyticsHelper.logAccessibilityIconTooltipsPreferenceChanged(value
         ),
     )
 
-internal fun AnalyticsHelper.logAccessibilityAltTextPreferenceChanged(value: Boolean) =
-    logEvent(
-        AnalyticsEvent(
-            type = "accessibility_altText_preference_changed",
-            extras = listOf(
-                Param(key = "accessibility_altText_preference", value = value.toString()),
-            ),
-        ),
-    )
-
 internal fun AnalyticsHelper.logMetricsPreferenceChanged(value: Boolean) =
     logEvent(
         AnalyticsEvent(
@@ -71,54 +61,4 @@ internal fun AnalyticsHelper.logCrashlyticsPreferenceChanged(value: Boolean) =
                 Param(key = "crashlytics_preference", value = value.toString()),
             ),
         ),
-    )
-
-internal fun AnalyticsHelper.logTravelModePreferenceChanged(value: Boolean) =
-    logEvent(
-        AnalyticsEvent(
-            type = "travelmode_preference_changed",
-            extras = listOf(
-                Param(key = "travelmode_preference", value = value.toString()),
-            ),
-        ),
-    )
-
-internal fun AnalyticsHelper.logFriendsMainPreferenceChanged(value: Boolean) =
-    logEvent(
-        AnalyticsEvent(
-            type = "friendsmain_preference_changed",
-            extras = listOf(
-                Param(key = "friendsmain_preference", value = value.toString()),
-            ),
-        ),
-    )
-
-internal fun AnalyticsHelper.logAddEventPost() =
-    logEvent(
-        AnalyticsEvent(type = "add_eventpost"),
-    )
-
-internal fun AnalyticsHelper.logAddFriendPost() =
-    logEvent(
-        AnalyticsEvent(type = "add_friendpost"),
-    )
-
-internal fun AnalyticsHelper.logAddFriend() =
-    logEvent(
-        AnalyticsEvent(type = "add_friend"),
-    )
-
-internal fun AnalyticsHelper.logAddPublicPost() =
-    logEvent(
-        AnalyticsEvent(type = "add_publicpost"),
-    )
-
-internal fun AnalyticsHelper.logAddTriagingPost() =
-    logEvent(
-        AnalyticsEvent(type = "add_triagingpost"),
-    )
-
-internal fun AnalyticsHelper.logRemoveTriagingPost() =
-    logEvent(
-        AnalyticsEvent(type = "remove_triagingpost"),
     )

@@ -43,7 +43,6 @@ class AccessibilitySettingsViewModel @Inject constructor(
                     accessibilitySettingsData = AccessibilitySettingsData(
                         hasEmphasizedSwitchesEnabled = userData.hasAccessibilityEmphasizedSwitchesEnabled,
                         hasIconTooltipsEnabled = userData.hasAccessibilityIconTooltipsEnabled,
-                        hasAltTextEnabled = userData.hasAccessibilityAltTextEnabled,
                     ),
                 )
             }.stateIn(
@@ -61,12 +60,6 @@ class AccessibilitySettingsViewModel @Inject constructor(
     fun setIconTooltips(value: Boolean) {
         viewModelScope.launch {
             userDataRepository.setAccessibilityIconTooltips(value)
-        }
-    }
-
-    fun setAltText(value: Boolean) {
-        viewModelScope.launch {
-            userDataRepository.setAccessibilityAltText(value)
         }
     }
 }

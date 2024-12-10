@@ -41,22 +41,15 @@ import dev.coppee.aurelien.twinetics.core.auth.LocalAuthHelper
 import dev.coppee.aurelien.twinetics.core.designsystem.LocalSharedTransitionScope
 import dev.coppee.aurelien.twinetics.core.feedback.feedbackDialog
 import dev.coppee.aurelien.twinetics.core.user.Rn3User.LoggedOutUser
-import dev.coppee.aurelien.twinetics.feature.connect.connectScreen
-import dev.coppee.aurelien.twinetics.feature.connect.navigateToConnect
-import dev.coppee.aurelien.twinetics.feature.events.eventsScreen
-import dev.coppee.aurelien.twinetics.feature.events.navigateToEvents
-import dev.coppee.aurelien.twinetics.feature.feed.friends.friendsFeedScreen
-import dev.coppee.aurelien.twinetics.feature.feed.friends.navigateToFriendsFeed
-import dev.coppee.aurelien.twinetics.feature.feed.publics.navigateToPublicFeed
-import dev.coppee.aurelien.twinetics.feature.feed.publics.publicFeedScreen
-import dev.coppee.aurelien.twinetics.feature.information.INFORMATION_ROUTE
-import dev.coppee.aurelien.twinetics.feature.information.informationScreen
-import dev.coppee.aurelien.twinetics.feature.information.navigateToInformation
+import dev.coppee.aurelien.twinetics.feature.record.navigateToRecord
+import dev.coppee.aurelien.twinetics.feature.record.recordScreen
+import dev.coppee.aurelien.twinetics.feature.history.navigateToHistory
+import dev.coppee.aurelien.twinetics.feature.history.historyScreen
+import dev.coppee.aurelien.twinetics.feature.bluetooth.navigateToBluetooth
+import dev.coppee.aurelien.twinetics.feature.bluetooth.bluetoothScreen
 import dev.coppee.aurelien.twinetics.feature.login.LOGIN_ROUTE
 import dev.coppee.aurelien.twinetics.feature.login.loginScreen
 import dev.coppee.aurelien.twinetics.feature.login.navigateToLogin
-import dev.coppee.aurelien.twinetics.feature.publication.navigateToPublication
-import dev.coppee.aurelien.twinetics.feature.publication.publicationScreen
 import dev.coppee.aurelien.twinetics.feature.settings.navigateToSettings
 import dev.coppee.aurelien.twinetics.feature.settings.settingsNavigation
 import dev.coppee.aurelien.twinetics.ui.AppState
@@ -92,46 +85,23 @@ fun NavHost(
                     startDestination = "SPLASHSCREEN_SET_ROUTE",
                     modifier = modifier,
                 ) {
-                    connectScreen(
+                    historyScreen(
                         navController = navController,
                         navigateToSettings = navController::navigateToSettings,
-                        navigateToFriends = { navController.navigateToFriendsFeed {} },
-                        navigateToPublication = navController::navigateToPublication,
-                        navigateToPublic = { navController.navigateToPublicFeed {} },
-                        navigateToEvents = navController::navigateToEvents,
-                        navigateToLogin = navController::navigateToLogin,
+                        navigateToBluetooth = navController::navigateToBluetooth,
+                        navigateToRecord = navController::navigateToRecord,
                     )
-                    friendsFeedScreen(
+                    bluetoothScreen(
                         navController = navController,
                         navigateToSettings = navController::navigateToSettings,
-                        navigateToConnect = navController::navigateToConnect,
-                        navigateToPublication = navController::navigateToPublication,
-                        navigateToPublic = { navController.navigateToPublicFeed {} },
-                        navigateToEvents = navController::navigateToEvents,
+                        navigateToRecord = navController::navigateToRecord,
+                        navigateToHistory = navController::navigateToHistory,
                     )
-                    publicFeedScreen(
+                    recordScreen(
                         navController = navController,
                         navigateToSettings = navController::navigateToSettings,
-                        navigateToConnect = navController::navigateToConnect,
-                        navigateToFriends = { navController.navigateToFriendsFeed {} },
-                        navigateToPublication = navController::navigateToPublication,
-                        navigateToEvents = navController::navigateToEvents,
-                    )
-                    eventsScreen(
-                        navController = navController,
-                        navigateToSettings = navController::navigateToSettings,
-                        navigateToConnect = navController::navigateToConnect,
-                        navigateToFriends = { navController.navigateToFriendsFeed {} },
-                        navigateToPublication = navController::navigateToPublication,
-                        navigateToPublic = { navController.navigateToPublicFeed {} },
-                    )
-
-                    publicationScreen(
-                        navController = navController,
-                        navigateToSettings = navController::navigateToSettings,
-                        navigateToPublic = { navController.navigateToPublicFeed {} },
-                        navigateToFriends = { navController.navigateToFriendsFeed {} },
-                        navigateToEvents = navController::navigateToEvents,
+                        navigateToHistory = navController::navigateToHistory,
+                        navigateToBluetooth = navController::navigateToBluetooth,
                     )
 
                     loginScreen(navController = navController) {
@@ -141,17 +111,9 @@ fun NavHost(
                         }
                     }
 
-                    informationScreen(navController = navController) {
-                        if (pageCount < routes.size - 1) pageCount++
-                        navController.navigate(route = routes[pageCount]) {
-                            popUpTo(route = INFORMATION_ROUTE) { inclusive = true }
-                        }
-                    }
-
                     settingsNavigation(
                         navController = navController,
                         navigateToLogin = navController::navigateToLogin,
-                        navigateToInformation = navController::navigateToInformation,
                     )
 
                     feedbackDialog(navController = navController)

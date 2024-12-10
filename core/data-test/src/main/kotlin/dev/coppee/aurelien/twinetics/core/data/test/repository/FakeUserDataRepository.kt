@@ -45,18 +45,6 @@ class FakeUserDataRepository @Inject constructor(
         rn3PreferencesDataSource.setAccessibilityIconTooltipsPreference(value)
     }
 
-    override suspend fun setAccessibilityAltText(value: Boolean) {
-        rn3PreferencesDataSource.setAccessibilityAltTextPreference(value)
-    }
-
-    override suspend fun setTravelMode(value: Boolean) {
-        rn3PreferencesDataSource.setTravelModeEnabledPreference(value)
-    }
-
-    override suspend fun setFriendsMain(value: Boolean) {
-        rn3PreferencesDataSource.setFriendsMainEnabledPreference(value)
-    }
-
     override suspend fun setMetricsEnabled(value: Boolean) {
         rn3PreferencesDataSource.setMetricsEnabledPreference(value)
     }
@@ -71,17 +59,5 @@ class FakeUserDataRepository @Inject constructor(
 
     override suspend fun setNotAppFirstLaunch() {
         rn3PreferencesDataSource.setNotAppFirstLaunch()
-    }
-
-    override suspend fun setNeedInformation(value: Boolean) {
-        rn3PreferencesDataSource.setNeedInformation(value)
-    }
-
-    override suspend fun setAddressInfo(value: AddressInfo) {
-        rn3PreferencesDataSource.setAddressInfo(value)
-    }
-
-    override suspend fun setPhoneNumber(value: PhoneNumber) {
-        rn3PreferencesDataSource.setPhoneNumber(value)
     }
 }

@@ -65,17 +65,14 @@ class SettingsViewModel @Inject constructor(
 
     val uiState: StateFlow<SettingsUiState> = combine(
         authHelper.getUserFlow(),
-        userDataRepository.userData,
         devSettingsEnabled,
         inAppUpdateState,
-    ) { user, userData, devSettingsEnabled, inAppUpdateData ->
+    ) { user, devSettingsEnabled, inAppUpdateData ->
         Success(
             SettingsData(
                 user = user,
                 devSettingsEnabled = devSettingsEnabled,
                 inAppUpdateData = inAppUpdateData,
-                hasTravelModeEnabled = userData.hasTravelModeEnabled,
-                hasFriendsMainEnabled = userData.hasFriendsMainEnabled,
             ),
         )
     }.stateIn(
@@ -85,8 +82,6 @@ class SettingsViewModel @Inject constructor(
                 user = authHelper.getUser(),
                 devSettingsEnabled = devSettingsEnabled.value,
                 inAppUpdateData = inAppUpdateState.value,
-                hasTravelModeEnabled = false,
-                hasFriendsMainEnabled = false,
             ),
         ),
         started = WhileSubscribed(5.seconds.inWholeMilliseconds),
@@ -199,18 +194,6 @@ class SettingsViewModel @Inject constructor(
 
     fun setDevSettingsEnabled(enabled: Boolean) {
         devSettingsEnabled.compareAndSet(devSettingsEnabled.value, enabled)
-    }
-
-    fun setTravelMode(value: Boolean) {
-        viewModelScope.launch {
-            userDataRepository.setTravelMode(value)
-        }
-    }
-
-    fun setFriendsMain(value: Boolean) {
-        viewModelScope.launch {
-            userDataRepository.setFriendsMain(value)
-        }
     }
 
     fun logout() {

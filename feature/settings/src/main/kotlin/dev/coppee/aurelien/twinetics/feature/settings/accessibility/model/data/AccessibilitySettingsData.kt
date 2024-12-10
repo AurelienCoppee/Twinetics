@@ -19,5 +19,4 @@ package dev.coppee.aurelien.twinetics.feature.settings.accessibility.model.data
 data class AccessibilitySettingsData(
     val hasEmphasizedSwitchesEnabled: Boolean,
     val hasIconTooltipsEnabled: Boolean,
-    val hasAltTextEnabled: Boolean,
 )

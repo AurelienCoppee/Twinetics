@@ -23,8 +23,6 @@ import dev.coppee.aurelien.twinetics.core.user.Rn3User
 data class SettingsData(
     val user: Rn3User,
     val devSettingsEnabled: Boolean,
-    val hasTravelModeEnabled: Boolean,
-    val hasFriendsMainEnabled: Boolean,
     val inAppUpdateData: InAppUpdateState,
 )
 
