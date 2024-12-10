@@ -46,9 +46,7 @@ import dev.coppee.aurelien.twinetics.core.config.ConfigHelper
 import dev.coppee.aurelien.twinetics.core.config.LocalConfigHelper
 import dev.coppee.aurelien.twinetics.core.designsystem.Rn3Theme
 import dev.coppee.aurelien.twinetics.core.user.Rn3User.LoggedOutUser
-import dev.coppee.aurelien.twinetics.feature.feed.friends.FRIENDSFEED_ROUTE
-import dev.coppee.aurelien.twinetics.feature.feed.publics.PUBLICFEED_ROUTE
-import dev.coppee.aurelien.twinetics.feature.information.INFORMATION_ROUTE
+import dev.coppee.aurelien.twinetics.feature.history.HISTORY_ROUTE
 import dev.coppee.aurelien.twinetics.feature.login.LOGIN_ROUTE
 import dev.coppee.aurelien.twinetics.ui.App
 import dev.coppee.aurelien.twinetics.ui.rememberAppState
@@ -135,9 +133,7 @@ class MainActivity : ComponentActivity() {
             if (uiState is Success) {
                 val routes = mutableListOf<String>().apply {
                     if ((uiState as Success).shouldShowLoginScreenOnStartup) add(LOGIN_ROUTE)
-                    if ((uiState as Success).needInformation) add(INFORMATION_ROUTE)
-                    if ((uiState as Success).hasFriendsMainEnabled) add(FRIENDSFEED_ROUTE)
-                    if (!(uiState as Success).hasFriendsMainEnabled) add(PUBLICFEED_ROUTE)
+                    add(HISTORY_ROUTE)
                 }
                 CompositionLocalProvider(
                     LocalAnalyticsHelper provides analyticsHelper,

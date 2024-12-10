@@ -38,16 +38,6 @@ val customIconsList
         Outlined.Threads,
         Outlined.SyncSavedLocally,
         Outlined.DevicesOff,
-
-        Outlined.Building,
-        Outlined.Road,
-        Outlined.Bank,
-        Outlined.HomeGroup,
-        Outlined.HumanGreetingProximity,
-        Outlined.Belgium,
-        Outlined.France,
-        Outlined.UK,
-        Outlined.USA,
     )
 
 val Outlined.Tooltip
@@ -93,42 +83,6 @@ val Outlined.SyncSavedLocally
 val Outlined.DevicesOff
     @Composable
     get() = ImageVector.vectorResource(id = R.drawable.core_designsystem_icon_devicesoff)
-
-val Outlined.Building
-    @Composable
-    get() = ImageVector.vectorResource(id = R.drawable.core_designsystem_icon_building)
-
-val Outlined.Road
-    @Composable
-    get() = ImageVector.vectorResource(id = R.drawable.core_designsystem_icon_road)
-
-val Outlined.Bank
-    @Composable
-    get() = ImageVector.vectorResource(id = R.drawable.core_designsystem_icon_bank)
-
-val Outlined.HomeGroup
-    @Composable
-    get() = ImageVector.vectorResource(id = R.drawable.core_designsystem_icon_home_group)
-
-val Outlined.HumanGreetingProximity
-    @Composable
-    get() = ImageVector.vectorResource(id = R.drawable.core_designsystem_icon_human_greeting_proximity)
-
-val Outlined.Belgium
-    @Composable
-    get() = ImageVector.vectorResource(id = R.drawable.core_designsystem_icon_flag_be)
-
-val Outlined.France
-    @Composable
-    get() = ImageVector.vectorResource(id = R.drawable.core_designsystem_icon_flag_fr)
-
-val Outlined.UK
-    @Composable
-    get() = ImageVector.vectorResource(id = R.drawable.core_designsystem_icon_flag_uk)
-
-val Outlined.USA
-    @Composable
-    get() = ImageVector.vectorResource(id = R.drawable.core_designsystem_icon_flag_us)
 
 // Animated icons
 

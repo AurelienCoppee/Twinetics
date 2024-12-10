@@ -21,18 +21,8 @@ import dagger.Module
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
 import dev.coppee.aurelien.twinetics.core.data.di.DataModule
-import dev.coppee.aurelien.twinetics.core.data.repository.eventFeedData.EventFeedDataRepository
-import dev.coppee.aurelien.twinetics.core.data.repository.eventFeedData.FirestoreEventFeedDataRepository
-import dev.coppee.aurelien.twinetics.core.data.repository.friendData.FirestoreFriendsDataRepository
-import dev.coppee.aurelien.twinetics.core.data.repository.friendData.FriendsDataRepository
-import dev.coppee.aurelien.twinetics.core.data.repository.friendFeedData.FirestoreFriendFeedDataRepository
-import dev.coppee.aurelien.twinetics.core.data.repository.friendFeedData.FriendFeedDataRepository
 import dev.coppee.aurelien.twinetics.core.data.repository.linksRn3UrlData.FirestoreLinksRn3UrlDataRepository
 import dev.coppee.aurelien.twinetics.core.data.repository.linksRn3UrlData.LinksRn3UrlDataRepository
-import dev.coppee.aurelien.twinetics.core.data.repository.publicFeedData.FirestorePublicFeedDataRepository
-import dev.coppee.aurelien.twinetics.core.data.repository.publicFeedData.PublicFeedDataRepository
-import dev.coppee.aurelien.twinetics.core.data.repository.triagingData.FirestoreTriagingDataRepository
-import dev.coppee.aurelien.twinetics.core.data.repository.triagingData.TriagingDataRepository
 import dev.coppee.aurelien.twinetics.core.data.repository.userData.UserDataRepository
 import dev.coppee.aurelien.twinetics.core.data.test.repository.FakeUserDataRepository
 
@@ -46,31 +36,6 @@ internal interface TestDataModule {
     fun bindsUserDataRepository(
         userDataRepository: FakeUserDataRepository,
     ): UserDataRepository
-
-    @Binds
-    fun bindsFriendsDataRepository(
-        friendsDataRepository: FirestoreFriendsDataRepository,
-    ): FriendsDataRepository
-
-    @Binds
-    fun bindsEventFeedDataRepository(
-        eventFeedDataRepository: FirestoreEventFeedDataRepository,
-    ): EventFeedDataRepository
-
-    @Binds
-    fun bindsFriendFeedDataRepository(
-        friendFeedDataRepository: FirestoreFriendFeedDataRepository,
-    ): FriendFeedDataRepository
-
-    @Binds
-    fun bindsPublicFeedDataRepository(
-        publicFeedDataRepository: FirestorePublicFeedDataRepository,
-    ): PublicFeedDataRepository
-
-    @Binds
-    fun bindsTriagingDataRepository(
-        triagingDataRepository: FirestoreTriagingDataRepository,
-    ): TriagingDataRepository
 
     @Binds
     fun bindsLinksRn3UrlDataRepository(

@@ -45,7 +45,6 @@ import dev.coppee.aurelien.twinetics.core.designsystem.TopAppBarAction
 import dev.coppee.aurelien.twinetics.core.designsystem.component.Rn3Scaffold
 import dev.coppee.aurelien.twinetics.core.designsystem.component.TopAppBarStyle.HOME
 import dev.coppee.aurelien.twinetics.core.designsystem.component.getHaptic
-import dev.coppee.aurelien.twinetics.core.designsystem.icons.HumanGreetingProximity
 import dev.coppee.aurelien.twinetics.core.designsystem.paddingValues.Rn3PaddingValues
 import dev.coppee.aurelien.twinetics.core.designsystem.paddingValues.padding
 import dev.coppee.aurelien.twinetics.core.feedback.FeedbackContext.FeedbackScreenContext
@@ -103,7 +102,7 @@ internal fun EventsScreen(
     val add = when (data.user) {
         is SignedInUser -> BottomBarItem(
             icon = Filled.Add,
-            label = stringResource(string.feature_events_bottomBar_add),
+            label = stringResource(string.feature_history_bottomBar_add),
             onClick = onRecordBottomBarItemClicked,
             unselectedIconColor = Color(
                 ContextCompat.getColor(
@@ -116,14 +115,14 @@ internal fun EventsScreen(
 
         else -> BottomBarItem(
             icon = Filled.Add,
-            label = stringResource(string.feature_events_bottomBar_add),
+            label = stringResource(string.feature_history_bottomBar_add),
             onClick = {
                 haptic.click()
 
                 Toast
                     .makeText(
                         context,
-                        context.getString(string.feature_events_bottomBar_add_disabled),
+                        context.getString(string.feature_history_bottomBar_add_disabled),
                         Toast.LENGTH_SHORT,
                     )
                     .show()
@@ -135,13 +134,13 @@ internal fun EventsScreen(
 
     Rn3Scaffold(
         modifier = modifier,
-        topAppBarTitle = stringResource(string.feature_events_topAppBarTitle),
+        topAppBarTitle = stringResource(string.feature_history_topAppBarTitle),
         topAppBarTitleAlignment = CenterHorizontally,
         onBackIconButtonClicked = null,
         topAppBarActions = listOfNotNull(
             TopAppBarAction(
                 icon = Outlined.Settings,
-                title = stringResource(string.feature_events_topAppBarActions_settings),
+                title = stringResource(string.feature_history_topAppBarActions_settings),
                 onClick = onSettingsTopAppBarActionClicked,
             ),
             feedbackTopAppBarAction,
@@ -149,13 +148,13 @@ internal fun EventsScreen(
         bottomBarItems = listOf(
             BottomBarItem(
                 icon = Filled.People,
-                label = stringResource(string.feature_events_bottomBar_friends),
+                label = stringResource(string.feature_history_bottomBar_friends),
                 onClick = onBluetoothBottomBarItemClicked,
             ),
             add,
             BottomBarItem(
                 icon = Filled.Event,
-                label = stringResource(string.feature_events_bottomBar_events),
+                label = stringResource(string.feature_history_bottomBar_events),
                 onClick = {},
                 selected = true,
             ),

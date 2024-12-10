@@ -29,13 +29,11 @@ internal fun NavController.navigateToSettingsMain(navOptions: NavOptions? = null
 internal fun NavGraphBuilder.mainScreen(
     navController: NavController,
     navigateToLogin: () -> Unit,
-    navigateToInformation: () -> Unit,
 ) {
     composable(route = SETTINGS_MAIN_ROUTE) {
         SettingsRoute(
             navController = navController,
             navigateToLogin = navigateToLogin,
-            navigateToInformation = navigateToInformation,
         )
     }
 }

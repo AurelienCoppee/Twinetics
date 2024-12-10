@@ -37,7 +37,6 @@ import androidx.compose.material.icons.Icons.Outlined
 import androidx.compose.material.icons.automirrored.outlined.Logout
 import androidx.compose.material.icons.outlined.AccessibilityNew
 import androidx.compose.material.icons.outlined.DataObject
-import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.material.icons.outlined.FileDownload
 import androidx.compose.material.icons.outlined.Group
 import androidx.compose.material.icons.outlined.RestartAlt
@@ -119,7 +118,6 @@ internal fun SettingsRoute(
     viewModel: SettingsViewModel = hiltViewModel(),
     navController: NavController,
     navigateToLogin: () -> Unit,
-    navigateToInformation: () -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -181,10 +179,6 @@ internal fun SettingsRoute(
             analytics.logSettingsUiEvent("ossLicensesTile")
             context.openOssLicensesActivity()
         },
-        onClickInfoTile = {
-            analytics.logSettingsUiEvent("informationTile")
-            navigateToInformation()
-        },
     )
 
     TrackScreenViewEvent(screenName = "Settings")
@@ -205,7 +199,6 @@ internal fun SettingsScreen(
     onClickAccessibilityTile: () -> Unit = {},
     onClickDeveloperSettingsTile: () -> Unit = {},
     onClickOssLicensesTile: () -> Unit = {},
-    onClickInfoTile: () -> Unit = {},
 ) {
     Rn3Scaffold(
         modifier = modifier,
@@ -226,7 +219,6 @@ internal fun SettingsScreen(
                 onClickAccessibilityTile = onClickAccessibilityTile,
                 onClickDeveloperSettingsTile = onClickDeveloperSettingsTile,
                 onClickOssLicensesTile = onClickOssLicensesTile,
-                onClickInfoTile = onClickInfoTile,
             )
         }
     }
@@ -244,7 +236,6 @@ private fun SettingsPanel(
     onClickAccessibilityTile: () -> Unit,
     onClickDeveloperSettingsTile: () -> Unit,
     onClickOssLicensesTile: () -> Unit,
-    onClickInfoTile: () -> Unit,
 ) {
     val haptic = getHaptic()
 
@@ -390,13 +381,6 @@ private fun SettingsPanel(
 
         // generalHeaderTile
         Rn3TileSmallHeader(title = stringResource(string.feature_settings_settingsScreen_generalHeaderTile_title))
-
-        // editInfoTile
-        Rn3TileClick(
-            title = stringResource(string.feature_settings_settingsScreen_editInfoTile_title),
-            icon = Outlined.Edit,
-            onClick = onClickInfoTile,
-        )
 
         // dataAndPrivacyTile
         Rn3TileClick(

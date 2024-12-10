@@ -97,12 +97,8 @@ fun NavHost(
                         navigateToRecord = navController::navigateToRecord,
                         navigateToHistory = navController::navigateToHistory,
                     )
-                    recordScreen(
-                        navController = navController,
-                        navigateToSettings = navController::navigateToSettings,
-                        navigateToHistory = navController::navigateToHistory,
-                        navigateToBluetooth = navController::navigateToBluetooth,
-                    )
+
+                    recordScreen()
 
                     loginScreen(navController = navController) {
                         if (pageCount < routes.size - 1) pageCount++

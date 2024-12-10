@@ -18,14 +18,12 @@ package dev.coppee.aurelien.twinetics
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.coppee.aurelien.twinetics.MainActivityUiState.Loading
 import dev.coppee.aurelien.twinetics.MainActivityUiState.Success
 import dev.coppee.aurelien.twinetics.core.accessibility.AccessibilityHelper
 import dev.coppee.aurelien.twinetics.core.auth.AuthHelper
 import dev.coppee.aurelien.twinetics.core.data.repository.userData.UserDataRepository
-import dev.coppee.aurelien.twinetics.core.model.data.AddressInfo
 import dev.coppee.aurelien.twinetics.core.user.Rn3User
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -54,23 +52,16 @@ class MainActivityViewModel @Inject constructor(
             } else {
                 if (userData.isAppFirstLaunch) isAppFirstLaunch = true
                 if (userData.shouldShowLoginScreenOnStartup) shouldShowLoginScreenOnStartup = true
-                if (userData.needInformation) needInformation = true
 
                 Success(
                     accessibilityHelper = AccessibilityHelper(
                         hasEmphasizedSwitchesEnabled = userData.hasAccessibilityEmphasizedSwitchesEnabled,
                         hasIconTooltipsEnabled = userData.hasAccessibilityIconTooltipsEnabled,
-                        hasAltTextEnabled = userData.hasAccessibilityAltTextEnabled,
                     ),
                     hasMetricsEnabled = userData.hasMetricsEnabled,
                     hasCrashlyticsEnabled = userData.hasCrashlyticsEnabled,
-                    hasTravelModeEnabled = userData.hasTravelModeEnabled,
-                    hasFriendsMainEnabled = userData.hasFriendsMainEnabled,
-                    needInformation = BuildConfig.FLAVOR != "demo" && needInformation,
                     isAppFirstLaunch = BuildConfig.FLAVOR != "demo" && isAppFirstLaunch,
                     shouldShowLoginScreenOnStartup = BuildConfig.FLAVOR != "demo" && shouldShowLoginScreenOnStartup,
-                    address = userData.address,
-                    phone = userData.phone,
                 )
             }
         }.stateIn(
@@ -94,10 +85,5 @@ sealed interface MainActivityUiState {
         val hasCrashlyticsEnabled: Boolean,
         val isAppFirstLaunch: Boolean,
         val shouldShowLoginScreenOnStartup: Boolean,
-        val needInformation: Boolean,
-        val hasTravelModeEnabled: Boolean,
-        val hasFriendsMainEnabled: Boolean,
-        val address: AddressInfo,
-        val phone: PhoneNumber?,
     ) : MainActivityUiState
 }
