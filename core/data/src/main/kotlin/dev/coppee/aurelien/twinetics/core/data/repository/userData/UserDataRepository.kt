@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package dev.coppee.aurelien.twinetics.core.data.repository.userData
 
 import dev.coppee.aurelien.twinetics.core.model.data.UserData
@@ -23,19 +24,34 @@ interface UserDataRepository {
      * Stream of [UserData]
      */
     val userData: Flow<UserData>
+
     /**
      * Sets whether the user has enabled the accessibility settings that emphasizes selected switches
      */
     suspend fun setAccessibilityEmphasizedSwitches(value: Boolean)
+
     /**
      * Sets whether the user has enabled the accessibility settings that adds tooltips to Icons
      */
     suspend fun setAccessibilityIconTooltips(value: Boolean)
+
     /**
-     * Sets whether the user has enabled the accessibility settings that show alt texts
+     * Enables or disables the collection of analytics metrics to monitor app performance and user engagement.
      */
     suspend fun setMetricsEnabled(value: Boolean)
+
+    /**
+     * Enables or disables integration with Crashlytics to report unexpected crashes for improving app stability.
+     */
     suspend fun setCrashlyticsEnabled(value: Boolean)
+
+    /**
+     * Decides whether to show the login screen on startup to manage user access and session control.
+     */
     suspend fun setShouldShowLoginScreenOnStartup(value: Boolean)
+
+    /**
+     * Marks the app as not being launched for the first time, to customize the initial user experience.
+     */
     suspend fun setNotAppFirstLaunch()
 }

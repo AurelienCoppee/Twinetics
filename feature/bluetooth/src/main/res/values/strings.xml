@@ -16,19 +16,10 @@
 
 <resources>
     <string name="feature_bluetooth_topAppBarActions_settings">Settings</string>
-    <string name="feature_bluetooth_topAppBarTitle">Connect</string>
-    <string name="feature_bluetooth_bottomBar_connect">Connect</string>
-    <string name="feature_bluetooth_fab_text">Add friend</string>
-    <string name="feature_bluetooth_bottomBar_public">Public</string>
-    <string name="feature_bluetooth_bottomBar_add">Add</string>
-    <string name="feature_bluetooth_bottomBar_friends">Friends</string>
-    <string name="feature_bluetooth_bottomBar_events">Events</string>
-    <string name="feature_bluetooth_bottomBar_add_disabled">You can\'t post if you\'re not connected</string>
-    <string name="feature_bluetooth_loginTile_supportingtext">Log you in to save your Friends across devices</string>
-    <string name="feature_bluetooth_loginTile_button">Login</string>
-    <string name="feature_bluetooth_friendTileClick_button">I\'m close</string>
-    <string name="feature_bluetooth_friendTileClick_iconButton_contentDescription">Go to user settings</string>
-    <string name="feature_bluetooth_friendTileClick_iconButton_toast">Got to %1$s settings</string>
-    <string name="feature_bluetooth_newFriendModal_Button">Add friend</string>
-    <string name="feature_bluetooth_newFriendModal_name_label">Name</string>
+    <string name="feature_bluetooth_topAppBarTitle">Devices</string>
+    <string name="feature_bluetooth_fab_text">Add a device</string>
+    <string name="feature_bluetooth_bottomBar_record">Record</string>
+    <string name="feature_bluetooth_bottomBar_bluetooth">Devices</string>
+    <string name="feature_bluetooth_bottomBar_history">History</string>
+    <string name="feature_bluetooth_bottomBar_record_disabled">You can\'t record an activity if you don\'t have a device connected</string>
 </resources>

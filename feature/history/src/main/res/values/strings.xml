@@ -16,11 +16,9 @@
 
 <resources>
     <string name="feature_history_topAppBarActions_settings">Settings</string>
-    <string name="feature_history_topAppBarTitle">Events</string>
-    <string name="feature_history_bottomBar_connect">Connect</string>
-    <string name="feature_history_bottomBar_public">Public</string>
-    <string name="feature_history_bottomBar_add">Add</string>
-    <string name="feature_history_bottomBar_friends">Friends</string>
-    <string name="feature_history_bottomBar_events">Events</string>
-    <string name="feature_history_bottomBar_add_disabled">You can\'t post if you\'re not connected</string>
+    <string name="feature_history_topAppBarTitle">History</string>
+    <string name="feature_history_bottomBar_history">History</string>
+    <string name="feature_history_bottomBar_bluetooth">Devices</string>
+    <string name="feature_history_bottomBar_record">Record</string>
+    <string name="feature_history_bottomBar_record_disabled">You can\'t record an activity if you don\'t have a device connected</string>
 </resources>

@@ -26,8 +26,9 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons.Filled
 import androidx.compose.material.icons.Icons.Outlined
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Public
+import androidx.compose.material.icons.filled.Bluetooth
+import androidx.compose.material.icons.filled.InsertChartOutlined
+import androidx.compose.material.icons.filled.RadioButtonChecked
 import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.ExtendedFloatingActionButton
@@ -85,7 +86,7 @@ internal fun BluetoothRoute(
             modifier = modifier,
             data = (uiState as Success).bluetoothData,
             feedbackTopAppBarAction = FeedbackScreenContext(
-                localName = "ConnectScreen",
+                localName = "BluetoothScreen",
                 localID = "oujWHHHpuFbChUEYhyGX39V2exJ299Dw",
             ).toTopAppBarAction(navController::navigateToFeedback),
             onSettingsTopAppBarActionClicked = navigateToSettings,
@@ -94,7 +95,7 @@ internal fun BluetoothRoute(
         )
     }
 
-    TrackScreenViewEvent(screenName = "connect")
+    TrackScreenViewEvent(screenName = "bluetooth")
 }
 
 @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
@@ -123,8 +124,8 @@ internal fun BluetoothScreen(
 
     val add = when (data.user) {
         is SignedInUser -> BottomBarItem(
-            icon = Filled.Add,
-            label = stringResource(string.feature_bluetooth_bottomBar_add),
+            icon = Filled.RadioButtonChecked,
+            label = stringResource(string.feature_bluetooth_bottomBar_record),
             onClick = onRecordBottomBarItemClicked,
             unselectedIconColor = Color(
                 ContextCompat.getColor(
@@ -136,15 +137,15 @@ internal fun BluetoothScreen(
         )
 
         else -> BottomBarItem(
-            icon = Filled.Add,
-            label = stringResource(string.feature_bluetooth_bottomBar_add),
+            icon = Filled.RadioButtonChecked,
+            label = stringResource(string.feature_bluetooth_bottomBar_record),
             onClick = {
                 haptic.click()
 
                 Toast
                     .makeText(
                         context,
-                        context.getString(string.feature_bluetooth_bottomBar_add_disabled),
+                        context.getString(string.feature_bluetooth_bottomBar_record_disabled),
                         Toast.LENGTH_SHORT,
                     )
                     .show()
@@ -180,15 +181,15 @@ internal fun BluetoothScreen(
         },
         bottomBarItems = listOf(
             BottomBarItem(
-                icon = Filled.Public,
-                label = stringResource(string.feature_bluetooth_bottomBar_connect),
+                icon = Filled.Bluetooth,
+                label = stringResource(string.feature_bluetooth_bottomBar_bluetooth),
                 onClick = {},
                 selected = true,
             ),
             add,
             BottomBarItem(
-                icon = Filled.Public,
-                label = stringResource(string.feature_bluetooth_bottomBar_public),
+                icon = Filled.InsertChartOutlined,
+                label = stringResource(string.feature_bluetooth_bottomBar_history),
                 onClick = onHistoryBottomBarItemClicked,
             ),
         ),

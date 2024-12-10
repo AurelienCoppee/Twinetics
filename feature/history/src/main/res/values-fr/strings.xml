@@ -16,11 +16,9 @@
 
 <resources>
     <string name="feature_history_topAppBarActions_settings">Paramètres</string>
-    <string name="feature_history_topAppBarTitle">Évènements</string>
-    <string name="feature_history_bottomBar_connect">Connexion</string>
-    <string name="feature_history_bottomBar_public">Publique</string>
-    <string name="feature_history_bottomBar_add">Ajouter</string>
-    <string name="feature_history_bottomBar_friends">Amis</string>
-    <string name="feature_history_bottomBar_events">Évènements</string>
-    <string name="feature_history_bottomBar_add_disabled">Vous ne pouvez pas poster si vous n\'êtes pas connecté</string>
+    <string name="feature_history_topAppBarTitle">Historique</string>
+    <string name="feature_history_bottomBar_history">Historique</string>
+    <string name="feature_history_bottomBar_bluetooth">Appareils</string>
+    <string name="feature_history_bottomBar_record">Enregistrement</string>
+    <string name="feature_history_bottomBar_record_disabled">Vous ne pouvez pas enregistrer une activité si vous n\'avez pas d\'appareils connectés</string>
 </resources>

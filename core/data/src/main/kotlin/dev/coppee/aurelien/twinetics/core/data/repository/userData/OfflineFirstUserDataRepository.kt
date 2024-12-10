@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package dev.coppee.aurelien.twinetics.core.data.repository.userData
 
 import dev.coppee.aurelien.twinetics.core.analytics.AnalyticsHelper
@@ -29,6 +30,7 @@ internal class OfflineFirstUserDataRepository @Inject constructor(
     private val rn3PreferencesDataSource: Rn3PreferencesDataSource,
     private val analyticsHelper: AnalyticsHelper,
 ) : UserDataRepository {
+
     override val userData: Flow<UserData> = rn3PreferencesDataSource.userData
 
     override suspend fun setAccessibilityEmphasizedSwitches(value: Boolean) {
@@ -45,7 +47,6 @@ internal class OfflineFirstUserDataRepository @Inject constructor(
         rn3PreferencesDataSource.setMetricsEnabledPreference(value)
         analyticsHelper.logMetricsPreferenceChanged(value)
     }
-
     override suspend fun setCrashlyticsEnabled(value: Boolean) {
         rn3PreferencesDataSource.setCrashlyticsEnabledPreference(value)
         analyticsHelper.logCrashlyticsPreferenceChanged(value)

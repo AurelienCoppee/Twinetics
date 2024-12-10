@@ -23,9 +23,9 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons.Filled
 import androidx.compose.material.icons.Icons.Outlined
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Event
-import androidx.compose.material.icons.filled.People
+import androidx.compose.material.icons.filled.Bluetooth
+import androidx.compose.material.icons.filled.InsertChartOutlined
+import androidx.compose.material.icons.filled.RadioButtonChecked
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -101,8 +101,8 @@ internal fun EventsScreen(
 
     val add = when (data.user) {
         is SignedInUser -> BottomBarItem(
-            icon = Filled.Add,
-            label = stringResource(string.feature_history_bottomBar_add),
+            icon = Filled.RadioButtonChecked,
+            label = stringResource(string.feature_history_bottomBar_record),
             onClick = onRecordBottomBarItemClicked,
             unselectedIconColor = Color(
                 ContextCompat.getColor(
@@ -114,15 +114,15 @@ internal fun EventsScreen(
         )
 
         else -> BottomBarItem(
-            icon = Filled.Add,
-            label = stringResource(string.feature_history_bottomBar_add),
+            icon = Filled.RadioButtonChecked,
+            label = stringResource(string.feature_history_bottomBar_record),
             onClick = {
                 haptic.click()
 
                 Toast
                     .makeText(
                         context,
-                        context.getString(string.feature_history_bottomBar_add_disabled),
+                        context.getString(string.feature_history_bottomBar_record_disabled),
                         Toast.LENGTH_SHORT,
                     )
                     .show()
@@ -147,14 +147,14 @@ internal fun EventsScreen(
         ),
         bottomBarItems = listOf(
             BottomBarItem(
-                icon = Filled.People,
-                label = stringResource(string.feature_history_bottomBar_friends),
+                icon = Filled.Bluetooth,
+                label = stringResource(string.feature_history_bottomBar_bluetooth),
                 onClick = onBluetoothBottomBarItemClicked,
             ),
             add,
             BottomBarItem(
-                icon = Filled.Event,
-                label = stringResource(string.feature_history_bottomBar_events),
+                icon = Filled.InsertChartOutlined,
+                label = stringResource(string.feature_history_bottomBar_history),
                 onClick = {},
                 selected = true,
             ),
