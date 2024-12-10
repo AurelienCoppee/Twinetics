@@ -110,7 +110,7 @@ internal fun FeedbackContextPage(
         }
 
         Row(
-            Modifier.padding(Rn3SurfaceDefaults.paddingValues.copy(top = 0.dp, bottom = 12.dp)),
+            Modifier.padding(Rn3SurfaceDefaults.paddingValues.copy(top = 0.dp, bottom = 0.dp)),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             FilledTonalButton(

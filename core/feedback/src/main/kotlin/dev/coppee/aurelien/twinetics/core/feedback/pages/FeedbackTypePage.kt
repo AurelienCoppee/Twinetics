@@ -94,7 +94,7 @@ internal fun FeedbackTypePage(feedbackType: String, nextPage: (String) -> Unit) 
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(Rn3SurfaceDefaults.paddingValues.copy(top = 6.dp, bottom = 12.dp)),
+                .padding(Rn3SurfaceDefaults.paddingValues.copy(top = 6.dp, bottom = 0.dp)),
             enabled = trigger,
         ) {
             Text(text = stringResource(string.core_feedback_continueButton_title))
