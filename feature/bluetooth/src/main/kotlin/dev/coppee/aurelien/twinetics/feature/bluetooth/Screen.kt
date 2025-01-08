@@ -68,6 +68,7 @@ import dev.coppee.aurelien.twinetics.feature.bluetooth.model.BluetoothUiState.Lo
 import dev.coppee.aurelien.twinetics.feature.bluetooth.model.BluetoothUiState.Success
 import dev.coppee.aurelien.twinetics.feature.bluetooth.model.BluetoothViewModel
 import dev.coppee.aurelien.twinetics.feature.bluetooth.model.data.BluetoothData
+import dev.coppee.aurelien.twinetics.feature.bluetooth.ui.Rn3BluetoothTileClick
 
 @Composable
 internal fun BluetoothRoute(
@@ -174,6 +175,8 @@ internal fun BluetoothScreen(
                 text = { Text(text = stringResource(string.feature_bluetooth_fab_text)) },
                 icon = { Icon(imageVector = Outlined.Add, contentDescription = null) },
                 onClick = {
+                    data.sensors.
+
                     haptic.click()
                 },
                 expanded = fabExpanded.value,
@@ -217,6 +220,10 @@ private fun ColumnPanel(
         horizontalAlignment = CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
-
+        data.sensors.forEach { sensor ->
+            Rn3BluetoothTileClick(
+                sensor = sensor,
+            )
+        }
     }
 }

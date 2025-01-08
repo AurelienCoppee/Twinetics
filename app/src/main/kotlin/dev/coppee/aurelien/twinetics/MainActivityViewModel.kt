@@ -18,6 +18,7 @@ package dev.coppee.aurelien.twinetics
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import coppee.aurelien.twinetics.BuildConfig
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.coppee.aurelien.twinetics.MainActivityUiState.Loading
 import dev.coppee.aurelien.twinetics.MainActivityUiState.Success
@@ -30,7 +31,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import coppee.aurelien.twinetics.BuildConfig
 import javax.inject.Inject
 import kotlin.time.Duration.Companion.seconds
 
@@ -42,11 +42,10 @@ class MainActivityViewModel @Inject constructor(
 
     private var isAppFirstLaunch = false
     private var shouldShowLoginScreenOnStartup = false
-    private var needInformation = false
 
     @Suppress("KotlinConstantConditions")
     val uiState: StateFlow<MainActivityUiState> =
-        authHelper.getUserFlow().combine(userDataRepository.userData) { user, userData ->
+        authHelper.getUserFlow().combine(userDataRepository.userFlow) { user, userData ->
             if (user == Rn3User.Loading) {
                 Loading
             } else {

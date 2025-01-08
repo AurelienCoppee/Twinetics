@@ -35,7 +35,7 @@ class DeveloperSettingsLinksViewModel @Inject constructor(
 ) : ViewModel() {
 
     val uiState: StateFlow<DeveloperSettingsLinksUiState> =
-        linksRn3UrlDataRepository.links.map { links ->
+        linksRn3UrlDataRepository.linksFlow.map { links ->
             DeveloperSettingsLinksUiState(
                 developerSettingsLinksData = DeveloperSettingsLinksData(
                     links = links,

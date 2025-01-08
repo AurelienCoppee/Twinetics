@@ -32,7 +32,7 @@ import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.HiltTestApplication
 import dev.coppee.aurelien.twinetics.core.designsystem.Rn3Theme
 import dev.coppee.aurelien.twinetics.core.testing.util.DefaultRoborazziOptions
-import dev.coppee.aurelien.twinetics.feature.feed.publics.PUBLICFEED_ROUTE
+import dev.coppee.aurelien.twinetics.feature.record.RECORD_ROUTE
 import dev.coppee.aurelien.twinetics.uitesthiltmanifest.HiltComponentActivity
 import org.junit.Before
 import org.junit.Rule
@@ -100,7 +100,7 @@ class AppScreenSizesScreenshotTests {
                         val fakeAppState = rememberAppState()
                         App(
                             appState = fakeAppState,
-                            routes = listOf(PUBLICFEED_ROUTE),
+                            routes = listOf(RECORD_ROUTE),
                         )
                     }
                 }

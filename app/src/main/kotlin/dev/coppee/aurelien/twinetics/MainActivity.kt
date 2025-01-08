@@ -34,6 +34,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.analytics.analytics
 import com.google.firebase.crashlytics.crashlytics
 import com.google.firebase.firestore.firestore
+import coppee.aurelien.twinetics.BuildConfig
 import dagger.hilt.android.AndroidEntryPoint
 import dev.coppee.aurelien.twinetics.MainActivityUiState.Loading
 import dev.coppee.aurelien.twinetics.MainActivityUiState.Success
@@ -53,7 +54,6 @@ import dev.coppee.aurelien.twinetics.ui.rememberAppState
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import coppee.aurelien.twinetics.BuildConfig
 import javax.inject.Inject
 
 @AndroidEntryPoint

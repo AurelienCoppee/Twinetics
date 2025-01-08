@@ -25,7 +25,7 @@ import javax.inject.Inject
 
 class FirestoreLinksRn3UrlDataRepository @Inject constructor() : LinksRn3UrlDataRepository {
 
-    override val links: Flow<List<LinkRn3UrlRawData>> = Firebase.firestore
+    override val linksFlow: Flow<List<LinkRn3UrlRawData>> = Firebase.firestore
         .collection("links")
         .dataObjects<LinkRn3UrlRawData>()
 

@@ -28,18 +28,18 @@ import org.junit.rules.TemporaryFolder
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-class Rn3PreferencesDataSourceTest {
+class Rn3UserPreferencesDataSourceTest {
 
     private val testScope = TestScope(UnconfinedTestDispatcher())
 
-    private lateinit var subject: Rn3PreferencesDataSource
+    private lateinit var subject: Rn3UserPreferencesDataSource
 
     @get:Rule
     val tmpFolder: TemporaryFolder = TemporaryFolder.builder().assureDeletion().build()
 
     @Before
     fun setup() {
-        subject = Rn3PreferencesDataSource(
+        subject = Rn3UserPreferencesDataSource(
             tmpFolder.testUserPreferencesDataStore(testScope),
         )
     }

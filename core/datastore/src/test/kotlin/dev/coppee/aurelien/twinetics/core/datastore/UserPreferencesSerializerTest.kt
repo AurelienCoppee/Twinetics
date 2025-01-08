@@ -17,9 +17,9 @@
 package dev.coppee.aurelien.twinetics.core.datastore
 
 import androidx.datastore.core.CorruptionException
+import coppee.aurelien.twinetics.core.datastore.userPreferences
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
-import coppee.aurelien.twinetics.core.datastore.userPreferences
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import kotlin.test.assertEquals

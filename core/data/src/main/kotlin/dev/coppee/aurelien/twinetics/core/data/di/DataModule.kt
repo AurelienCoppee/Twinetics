@@ -22,6 +22,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.coppee.aurelien.twinetics.core.data.repository.linksRn3UrlData.FirestoreLinksRn3UrlDataRepository
 import dev.coppee.aurelien.twinetics.core.data.repository.linksRn3UrlData.LinksRn3UrlDataRepository
+import dev.coppee.aurelien.twinetics.core.data.repository.sensorData.OfflineFirstSensorDataRepository
+import dev.coppee.aurelien.twinetics.core.data.repository.sensorData.SensorDataRepository
 import dev.coppee.aurelien.twinetics.core.data.repository.userData.OfflineFirstUserDataRepository
 import dev.coppee.aurelien.twinetics.core.data.repository.userData.UserDataRepository
 
@@ -33,6 +35,11 @@ abstract class DataModule {
     internal abstract fun bindsUserDataRepository(
         userDataRepository: OfflineFirstUserDataRepository,
     ): UserDataRepository
+
+    @Binds
+    internal abstract fun bindsSensorDataRepository(
+        sensorDataRepository: OfflineFirstSensorDataRepository,
+    ): SensorDataRepository
 
     @Binds
     internal abstract fun bindsLinksRn3UrlDataRepository(

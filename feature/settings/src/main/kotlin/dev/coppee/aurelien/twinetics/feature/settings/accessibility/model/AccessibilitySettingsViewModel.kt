@@ -37,7 +37,7 @@ class AccessibilitySettingsViewModel @Inject constructor(
 ) : ViewModel() {
 
     val uiState: StateFlow<AccessibilitySettingsUiState> =
-        userDataRepository.userData
+        userDataRepository.userFlow
             .map { userData ->
                 Success(
                     accessibilitySettingsData = AccessibilitySettingsData(

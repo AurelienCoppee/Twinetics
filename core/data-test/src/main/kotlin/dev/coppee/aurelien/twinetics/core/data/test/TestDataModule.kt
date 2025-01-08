@@ -23,7 +23,9 @@ import dagger.hilt.testing.TestInstallIn
 import dev.coppee.aurelien.twinetics.core.data.di.DataModule
 import dev.coppee.aurelien.twinetics.core.data.repository.linksRn3UrlData.FirestoreLinksRn3UrlDataRepository
 import dev.coppee.aurelien.twinetics.core.data.repository.linksRn3UrlData.LinksRn3UrlDataRepository
+import dev.coppee.aurelien.twinetics.core.data.repository.sensorData.SensorDataRepository
 import dev.coppee.aurelien.twinetics.core.data.repository.userData.UserDataRepository
+import dev.coppee.aurelien.twinetics.core.data.test.repository.FakeSensorDataRepository
 import dev.coppee.aurelien.twinetics.core.data.test.repository.FakeUserDataRepository
 
 @Module
@@ -36,6 +38,11 @@ internal interface TestDataModule {
     fun bindsUserDataRepository(
         userDataRepository: FakeUserDataRepository,
     ): UserDataRepository
+
+    @Binds
+    fun bindsSensorDataRepository(
+        sensorDataRepository: FakeSensorDataRepository,
+    ): SensorDataRepository
 
     @Binds
     fun bindsLinksRn3UrlDataRepository(

@@ -17,6 +17,7 @@
 package dev.coppee.aurelien.twinetics.feature.bluetooth.model.data
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
+import dev.coppee.aurelien.twinetics.core.model.data.SensorData
 import dev.coppee.aurelien.twinetics.core.user.Rn3User.AnonymousUser
 import dev.coppee.aurelien.twinetics.core.user.Rn3User.SignedInUser
 import dev.coppee.aurelien.twinetics.feature.bluetooth.model.data.PreviewParameterData.bluetoothData_default
@@ -41,6 +42,13 @@ object PreviewParameterData {
             isAdmin = false,
             email = "androidPreview@rahmouni.dev",
         ),
+        sensors = listOf(
+            SensorData(
+                address = "",
+                name = "Heart Rate Monitor",
+                type = "",
+            )
+        )
     )
     val bluetoothData_mutations = with(bluetoothData_default) {
         sequenceOf(

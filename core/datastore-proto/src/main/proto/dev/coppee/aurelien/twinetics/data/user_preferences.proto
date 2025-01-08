@@ -11,5 +11,5 @@ message UserPreferences {
     bool shouldNotShowLoginScreenOnStartup = 5;
     bool isNotAppFirstLaunch = 6;
 
-    // NEXT AVAILABLE ID: 8
+    // NEXT AVAILABLE ID: 7
 }

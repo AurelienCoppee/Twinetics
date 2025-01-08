@@ -17,13 +17,13 @@
 package dev.coppee.aurelien.twinetics.core.datastore
 
 import androidx.datastore.core.DataStore
-import dev.coppee.aurelien.twinetics.core.model.data.UserData
-import kotlinx.coroutines.flow.map
 import coppee.aurelien.twinetics.core.datastore.UserPreferences
 import coppee.aurelien.twinetics.core.datastore.copy
+import dev.coppee.aurelien.twinetics.core.model.data.UserData
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class Rn3PreferencesDataSource @Inject constructor(
+class Rn3UserPreferencesDataSource @Inject constructor(
     private val userPreferences: DataStore<UserPreferences>,
 ) {
     val userData = userPreferences.data.map { userPref ->

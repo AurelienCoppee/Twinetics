@@ -17,7 +17,7 @@
 package dev.coppee.aurelien.twinetics.core.data.test.repository
 
 import dev.coppee.aurelien.twinetics.core.data.repository.userData.UserDataRepository
-import dev.coppee.aurelien.twinetics.core.datastore.Rn3PreferencesDataSource
+import dev.coppee.aurelien.twinetics.core.datastore.Rn3UserPreferencesDataSource
 import dev.coppee.aurelien.twinetics.core.model.data.UserData
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -29,33 +29,33 @@ import javax.inject.Inject
  * backend.
  */
 class FakeUserDataRepository @Inject constructor(
-    private val rn3PreferencesDataSource: Rn3PreferencesDataSource,
+    private val rn3UserPreferencesDataSource: Rn3UserPreferencesDataSource,
 ) : UserDataRepository {
 
-    override val userData: Flow<UserData> =
-        rn3PreferencesDataSource.userData
+    override val userFlow: Flow<UserData> =
+        rn3UserPreferencesDataSource.userData
 
     override suspend fun setAccessibilityEmphasizedSwitches(value: Boolean) {
-        rn3PreferencesDataSource.setAccessibilityEmphasizedSwitchesPreference(value)
+        rn3UserPreferencesDataSource.setAccessibilityEmphasizedSwitchesPreference(value)
     }
 
     override suspend fun setAccessibilityIconTooltips(value: Boolean) {
-        rn3PreferencesDataSource.setAccessibilityIconTooltipsPreference(value)
+        rn3UserPreferencesDataSource.setAccessibilityIconTooltipsPreference(value)
     }
 
     override suspend fun setMetricsEnabled(value: Boolean) {
-        rn3PreferencesDataSource.setMetricsEnabledPreference(value)
+        rn3UserPreferencesDataSource.setMetricsEnabledPreference(value)
     }
 
     override suspend fun setCrashlyticsEnabled(value: Boolean) {
-        rn3PreferencesDataSource.setCrashlyticsEnabledPreference(value)
+        rn3UserPreferencesDataSource.setCrashlyticsEnabledPreference(value)
     }
 
     override suspend fun setShouldShowLoginScreenOnStartup(value: Boolean) {
-        rn3PreferencesDataSource.setShouldShowLoginScreenOnStartup(value)
+        rn3UserPreferencesDataSource.setShouldShowLoginScreenOnStartup(value)
     }
 
     override suspend fun setNotAppFirstLaunch() {
-        rn3PreferencesDataSource.setNotAppFirstLaunch()
+        rn3UserPreferencesDataSource.setNotAppFirstLaunch()
     }
 }

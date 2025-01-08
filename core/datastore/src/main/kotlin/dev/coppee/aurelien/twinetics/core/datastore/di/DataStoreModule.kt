@@ -20,18 +20,20 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.DataStoreFactory
 import androidx.datastore.dataStoreFile
+import coppee.aurelien.twinetics.core.datastore.SensorList
+import coppee.aurelien.twinetics.core.datastore.UserPreferences
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import dev.coppee.aurelien.twinetics.core.datastore.SensorSerializer
 import dev.coppee.aurelien.twinetics.core.datastore.UserPreferencesSerializer
 import dev.coppee.aurelien.twinetics.core.network.Dispatcher
 import dev.coppee.aurelien.twinetics.core.network.Rn3Dispatchers
 import dev.coppee.aurelien.twinetics.core.network.di.ApplicationScope
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
-import coppee.aurelien.twinetics.core.datastore.UserPreferences
 import javax.inject.Singleton
 
 @Module
@@ -51,5 +53,20 @@ object DataStoreModule {
             scope = CoroutineScope(context = scope.coroutineContext + ioDispatcher),
         ) {
             context.dataStoreFile(fileName = "RahNeil_N3:user_preferences.pb")
+        }
+
+    @Provides
+    @Singleton
+    internal fun providesSensorDataStore(
+        @ApplicationContext context: Context,
+        @Dispatcher(Rn3Dispatchers.IO) ioDispatcher: CoroutineDispatcher,
+        @ApplicationScope scope: CoroutineScope,
+        sensorSerializer: SensorSerializer,
+    ): DataStore<SensorList> =
+        DataStoreFactory.create(
+            serializer = sensorSerializer,
+            scope = CoroutineScope(context = scope.coroutineContext + ioDispatcher),
+        ) {
+            context.dataStoreFile(fileName = "RahNeil_N3:sensor.pb")
         }
 }

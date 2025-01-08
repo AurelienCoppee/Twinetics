@@ -14,12 +14,10 @@
  * limitations under the License.
  */
 
-package dev.coppee.aurelien.twinetics.feature.bluetooth.model.data
+package dev.coppee.aurelien.twinetics.core.model.data
 
-import dev.coppee.aurelien.twinetics.core.model.data.SensorData
-import dev.coppee.aurelien.twinetics.core.user.Rn3User
-
-data class BluetoothData(
-    val user: Rn3User,
-    val sensors: List<SensorData>,
+data class SensorData(
+    val address: String,
+    val name: String,
+    val type: String,
 )

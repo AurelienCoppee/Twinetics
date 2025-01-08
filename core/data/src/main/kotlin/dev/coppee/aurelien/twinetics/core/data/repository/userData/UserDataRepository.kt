@@ -23,7 +23,7 @@ interface UserDataRepository {
     /**
      * Stream of [UserData]
      */
-    val userData: Flow<UserData>
+    val userFlow: Flow<UserData>
 
     /**
      * Sets whether the user has enabled the accessibility settings that emphasizes selected switches

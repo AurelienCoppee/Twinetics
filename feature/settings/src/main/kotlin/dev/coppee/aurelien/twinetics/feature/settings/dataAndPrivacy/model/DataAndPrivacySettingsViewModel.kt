@@ -37,7 +37,7 @@ class DataAndPrivacySettingsViewModel @Inject constructor(
 ) : ViewModel() {
 
     val uiState: StateFlow<DataAndPrivacySettingsUiState> =
-        userDataRepository.userData
+        userDataRepository.userFlow
             .map { userData ->
                 Success(
                     dataAndPrivacySettingsData = DataAndPrivacySettingsData(

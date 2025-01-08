@@ -18,16 +18,18 @@ package dev.coppee.aurelien.twinetics.core.datastore.test
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.DataStoreFactory
+import coppee.aurelien.twinetics.core.datastore.SensorList
+import coppee.aurelien.twinetics.core.datastore.UserPreferences
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
+import dev.coppee.aurelien.twinetics.core.datastore.SensorSerializer
 import dev.coppee.aurelien.twinetics.core.datastore.UserPreferencesSerializer
 import dev.coppee.aurelien.twinetics.core.datastore.di.DataStoreModule
 import dev.coppee.aurelien.twinetics.core.network.di.ApplicationScope
 import kotlinx.coroutines.CoroutineScope
 import org.junit.rules.TemporaryFolder
-import coppee.aurelien.twinetics.core.datastore.UserPreferences
 import javax.inject.Singleton
 
 @Module
@@ -48,6 +50,18 @@ internal object TestDataStoreModule {
             coroutineScope = scope,
             userPreferencesSerializer = userPreferencesSerializer,
         )
+
+    @Provides
+    @Singleton
+    fun providesSensorDataStore(
+        @ApplicationScope scope: CoroutineScope,
+        sensorSerializer: SensorSerializer,
+        tmpFolder: TemporaryFolder,
+    ): DataStore<SensorList> =
+        tmpFolder.testSensorDataStore(
+            coroutineScope = scope,
+            sensorSerializer = sensorSerializer,
+        )
 }
 
 fun TemporaryFolder.testUserPreferencesDataStore(
@@ -58,4 +72,14 @@ fun TemporaryFolder.testUserPreferencesDataStore(
     scope = coroutineScope,
 ) {
     newFile("RahNeil_N3:user_preferences_test.pb")
+}
+
+fun TemporaryFolder.testSensorDataStore(
+    coroutineScope: CoroutineScope,
+    sensorSerializer: SensorSerializer = SensorSerializer(),
+) = DataStoreFactory.create(
+    serializer = sensorSerializer,
+    scope = coroutineScope,
+) {
+    newFile("RahNeil_N3:sensor_test.pb")
 }

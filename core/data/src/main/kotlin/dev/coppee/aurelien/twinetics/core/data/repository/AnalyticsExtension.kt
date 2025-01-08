@@ -19,6 +19,7 @@ package dev.coppee.aurelien.twinetics.core.data.repository
 import dev.coppee.aurelien.twinetics.core.analytics.AnalyticsEvent
 import dev.coppee.aurelien.twinetics.core.analytics.AnalyticsEvent.Param
 import dev.coppee.aurelien.twinetics.core.analytics.AnalyticsHelper
+import dev.coppee.aurelien.twinetics.core.model.data.SensorData
 
 internal fun AnalyticsHelper.logAccessibilityEmphasizedSwitchesPreferenceChanged(value: Boolean) =
     logEvent(
@@ -59,6 +60,36 @@ internal fun AnalyticsHelper.logCrashlyticsPreferenceChanged(value: Boolean) =
             type = "crashlytics_preference_changed",
             extras = listOf(
                 Param(key = "crashlytics_preference", value = value.toString()),
+            ),
+        ),
+    )
+
+internal fun AnalyticsHelper.logSensorAdded(sensor: SensorData) =
+    logEvent(
+        AnalyticsEvent(
+            type = "crashlytics_sensor_added",
+            extras = listOf(
+                Param(key = "sensor_added", value = sensor.address),
+            ),
+        ),
+    )
+
+internal fun AnalyticsHelper.logSensorRemoved(address: String) =
+    logEvent(
+        AnalyticsEvent(
+            type = "crashlytics_sensor_removed",
+            extras = listOf(
+                Param(key = "sensor_removed", value = address),
+            ),
+        ),
+    )
+
+internal fun AnalyticsHelper.logSensorActivated(address: String, active: Boolean) =
+    logEvent(
+        AnalyticsEvent(
+            type = "crashlytics_sensor_changed",
+            extras = listOf(
+                Param(key = "sensor_activated", value = address + active.toString()),
             ),
         ),
     )

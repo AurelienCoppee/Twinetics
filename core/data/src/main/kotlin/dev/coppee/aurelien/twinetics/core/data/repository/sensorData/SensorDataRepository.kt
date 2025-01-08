@@ -14,12 +14,18 @@
  * limitations under the License.
  */
 
-package dev.coppee.aurelien.twinetics.feature.bluetooth.model.data
+package dev.coppee.aurelien.twinetics.core.data.repository.sensorData
 
 import dev.coppee.aurelien.twinetics.core.model.data.SensorData
-import dev.coppee.aurelien.twinetics.core.user.Rn3User
+import kotlinx.coroutines.flow.Flow
 
-data class BluetoothData(
-    val user: Rn3User,
-    val sensors: List<SensorData>,
-)
+interface SensorDataRepository {
+    /**
+     * Stream of [SensorData]
+     */
+    val sensorsFlow: Flow<List<SensorData>>
+
+    suspend fun addSensor(sensor: SensorData)
+    suspend fun removeSensor(address: String)
+    suspend fun setSensorActive(address: String, active: Boolean)
+}

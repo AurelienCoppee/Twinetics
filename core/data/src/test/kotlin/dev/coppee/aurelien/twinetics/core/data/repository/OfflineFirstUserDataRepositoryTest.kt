@@ -17,7 +17,7 @@ package dev.coppee.aurelien.twinetics.core.data.repository
 
 import dev.coppee.aurelien.twinetics.core.analytics.NoOpAnalyticsHelper
 import dev.coppee.aurelien.twinetics.core.data.repository.userData.OfflineFirstUserDataRepository
-import dev.coppee.aurelien.twinetics.core.datastore.Rn3PreferencesDataSource
+import dev.coppee.aurelien.twinetics.core.datastore.Rn3UserPreferencesDataSource
 import dev.coppee.aurelien.twinetics.core.datastore.test.testUserPreferencesDataStore
 import dev.coppee.aurelien.twinetics.core.model.data.UserData
 import kotlinx.coroutines.flow.first
@@ -33,17 +33,17 @@ import kotlin.test.assertEquals
 class OfflineFirstUserDataRepositoryTest {
     private val testScope = TestScope(UnconfinedTestDispatcher())
     private lateinit var subject: OfflineFirstUserDataRepository
-    private lateinit var rn3PreferencesDataSource: Rn3PreferencesDataSource
+    private lateinit var rn3UserPreferencesDataSource: Rn3UserPreferencesDataSource
     private val analyticsHelper = NoOpAnalyticsHelper()
     @get:Rule
     val tmpFolder: TemporaryFolder = TemporaryFolder.builder().assureDeletion().build()
     @Before
     fun setup() {
-        rn3PreferencesDataSource = Rn3PreferencesDataSource(
+        rn3UserPreferencesDataSource = Rn3UserPreferencesDataSource(
             userPreferences = tmpFolder.testUserPreferencesDataStore(testScope),
         )
         subject = OfflineFirstUserDataRepository(
-            rn3PreferencesDataSource = rn3PreferencesDataSource,
+            rn3UserPreferencesDataSource = rn3UserPreferencesDataSource,
             analyticsHelper = analyticsHelper,
         )
     }
@@ -59,7 +59,7 @@ class OfflineFirstUserDataRepositoryTest {
                     shouldShowLoginScreenOnStartup = true,
                     isAppFirstLaunch = true,
                 ),
-                subject.userData.first(),
+                subject.userFlow.first(),
             )
         }
 }

@@ -37,24 +37,24 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.core.content.ContextCompat
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import coppee.aurelien.twinetics.R.color
 import dev.coppee.aurelien.twinetics.core.auth.LocalAuthHelper
 import dev.coppee.aurelien.twinetics.core.designsystem.LocalSharedTransitionScope
 import dev.coppee.aurelien.twinetics.core.feedback.feedbackDialog
 import dev.coppee.aurelien.twinetics.core.user.Rn3User.LoggedOutUser
-import dev.coppee.aurelien.twinetics.feature.record.navigateToRecord
-import dev.coppee.aurelien.twinetics.feature.record.recordScreen
-import dev.coppee.aurelien.twinetics.feature.history.navigateToHistory
-import dev.coppee.aurelien.twinetics.feature.history.historyScreen
-import dev.coppee.aurelien.twinetics.feature.bluetooth.navigateToBluetooth
 import dev.coppee.aurelien.twinetics.feature.bluetooth.bluetoothScreen
+import dev.coppee.aurelien.twinetics.feature.bluetooth.navigateToBluetooth
+import dev.coppee.aurelien.twinetics.feature.history.historyScreen
+import dev.coppee.aurelien.twinetics.feature.history.navigateToHistory
 import dev.coppee.aurelien.twinetics.feature.login.LOGIN_ROUTE
 import dev.coppee.aurelien.twinetics.feature.login.loginScreen
 import dev.coppee.aurelien.twinetics.feature.login.navigateToLogin
+import dev.coppee.aurelien.twinetics.feature.record.navigateToRecord
+import dev.coppee.aurelien.twinetics.feature.record.recordScreen
 import dev.coppee.aurelien.twinetics.feature.settings.navigateToSettings
 import dev.coppee.aurelien.twinetics.feature.settings.settingsNavigation
 import dev.coppee.aurelien.twinetics.ui.AppState
 import kotlinx.coroutines.delay
-import coppee.aurelien.twinetics.R.color
 
 @OptIn(ExperimentalSharedTransitionApi::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "DesignSystem")

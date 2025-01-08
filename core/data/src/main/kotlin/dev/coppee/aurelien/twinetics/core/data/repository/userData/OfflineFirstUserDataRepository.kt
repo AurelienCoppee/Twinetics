@@ -21,39 +21,39 @@ import dev.coppee.aurelien.twinetics.core.data.repository.logAccessibilityEmphas
 import dev.coppee.aurelien.twinetics.core.data.repository.logAccessibilityIconTooltipsPreferenceChanged
 import dev.coppee.aurelien.twinetics.core.data.repository.logCrashlyticsPreferenceChanged
 import dev.coppee.aurelien.twinetics.core.data.repository.logMetricsPreferenceChanged
-import dev.coppee.aurelien.twinetics.core.datastore.Rn3PreferencesDataSource
+import dev.coppee.aurelien.twinetics.core.datastore.Rn3UserPreferencesDataSource
 import dev.coppee.aurelien.twinetics.core.model.data.UserData
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 internal class OfflineFirstUserDataRepository @Inject constructor(
-    private val rn3PreferencesDataSource: Rn3PreferencesDataSource,
+    private val rn3UserPreferencesDataSource: Rn3UserPreferencesDataSource,
     private val analyticsHelper: AnalyticsHelper,
 ) : UserDataRepository {
 
-    override val userData: Flow<UserData> = rn3PreferencesDataSource.userData
+    override val userFlow: Flow<UserData> = rn3UserPreferencesDataSource.userData
 
     override suspend fun setAccessibilityEmphasizedSwitches(value: Boolean) {
-        rn3PreferencesDataSource.setAccessibilityEmphasizedSwitchesPreference(value)
+        rn3UserPreferencesDataSource.setAccessibilityEmphasizedSwitchesPreference(value)
         analyticsHelper.logAccessibilityEmphasizedSwitchesPreferenceChanged(value)
     }
 
     override suspend fun setAccessibilityIconTooltips(value: Boolean) {
-        rn3PreferencesDataSource.setAccessibilityIconTooltipsPreference(value)
+        rn3UserPreferencesDataSource.setAccessibilityIconTooltipsPreference(value)
         analyticsHelper.logAccessibilityIconTooltipsPreferenceChanged(value)
     }
 
     override suspend fun setMetricsEnabled(value: Boolean) {
-        rn3PreferencesDataSource.setMetricsEnabledPreference(value)
+        rn3UserPreferencesDataSource.setMetricsEnabledPreference(value)
         analyticsHelper.logMetricsPreferenceChanged(value)
     }
     override suspend fun setCrashlyticsEnabled(value: Boolean) {
-        rn3PreferencesDataSource.setCrashlyticsEnabledPreference(value)
+        rn3UserPreferencesDataSource.setCrashlyticsEnabledPreference(value)
         analyticsHelper.logCrashlyticsPreferenceChanged(value)
     }
 
     override suspend fun setShouldShowLoginScreenOnStartup(value: Boolean) =
-        rn3PreferencesDataSource.setShouldShowLoginScreenOnStartup(value)
+        rn3UserPreferencesDataSource.setShouldShowLoginScreenOnStartup(value)
 
-    override suspend fun setNotAppFirstLaunch() = rn3PreferencesDataSource.setNotAppFirstLaunch()
+    override suspend fun setNotAppFirstLaunch() = rn3UserPreferencesDataSource.setNotAppFirstLaunch()
 }
