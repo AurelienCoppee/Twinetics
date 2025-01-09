@@ -16,10 +16,15 @@
 
 package dev.coppee.aurelien.twinetics.feature.bluetooth.model
 
+import android.companion.CompanionDeviceManager
+import androidx.activity.compose.ManagedActivityResultLauncher
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.IntentSenderRequest
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.coppee.aurelien.twinetics.core.auth.AuthHelper
+import dev.coppee.aurelien.twinetics.core.bluetooth.companion.requestDeviceAssociation
 import dev.coppee.aurelien.twinetics.core.data.repository.sensorData.SensorDataRepository
 import dev.coppee.aurelien.twinetics.core.model.data.SensorData
 import dev.coppee.aurelien.twinetics.feature.bluetooth.model.BluetoothUiState.Loading
@@ -42,6 +47,11 @@ class BluetoothViewModel @Inject constructor(
     fun addSensor(sensorData: SensorData) {
         viewModelScope.launch {
             sensorDataRepository.addSensor(sensorData)
+        }
+    }
+    fun deviceAssociation(deviceManager: CompanionDeviceManager, selectDeviceLauncher: ManagedActivityResultLauncher<IntentSenderRequest, ActivityResult>) {
+        viewModelScope.launch {
+            requestDeviceAssociation(deviceManager, selectDeviceLauncher)
         }
     }
 

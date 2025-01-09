@@ -14,25 +14,17 @@
  * limitations under the License.
  */
 
-@Suppress("DSL_SCOPE_VIOLATION") // Remove when fixed https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
-    alias(libs.plugins.rn3.android.feature)
+    alias(libs.plugins.rn3.android.library)
     alias(libs.plugins.rn3.android.library.compose)
-    alias(libs.plugins.rn3.android.library.jacoco)
+    alias(libs.plugins.rn3.android.hilt)
 }
 
 android {
-    namespace = "dev.coppee.aurelien.twinetics.feature.bluetooth"
+    namespace = "dev.coppee.aurelien.twinetics.core.bluetooth"
 }
 
 dependencies {
-    api(libs.androidx.compose.material.iconsExtended)
-
-    implementation(libs.androidx.appcompat)
-    implementation(libs.coil.kt.compose)
-    implementation(libs.libphonenumber)
-
-    implementation(projects.core.data)
-    implementation(project(":core:shapes"))
-    implementation(project(":core:bluetooth"))
+    implementation(libs.androidx.foundation.android)
+    implementation(libs.activity.compose)
 }
