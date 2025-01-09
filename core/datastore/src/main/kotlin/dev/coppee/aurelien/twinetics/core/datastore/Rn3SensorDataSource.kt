@@ -17,6 +17,7 @@
 package dev.coppee.aurelien.twinetics.core.datastore
 
 import androidx.datastore.core.DataStore
+import coppee.aurelien.twinetics.core.datastore.SensorDevice
 import coppee.aurelien.twinetics.core.datastore.SensorList
 import dev.coppee.aurelien.twinetics.core.model.data.SensorData
 import kotlinx.coroutines.flow.map
@@ -36,11 +37,32 @@ class Rn3SensorDataSource @Inject constructor(
     }
 
     suspend fun addSensor(sensor: SensorData) {
+        sensorList.updateData { current ->
+            val builder = current.toBuilder()
+
+            val newDevice = SensorDevice.newBuilder()
+                .setAddress(sensor.address)
+                .setName(sensor.name)
+                .setType(sensor.type)
+                .build()
+
+            builder.addDevices(newDevice)
+
+            builder.build()
+        }
     }
 
     suspend fun removeSensorByAddress(address: String) {
-    }
+        sensorList.updateData { current ->
+            val newDevices = current.devicesList.filter { it.address != address }
 
-    suspend fun updateSensorIsActive(address: String, newActive: Boolean) {
+            val builder = current.toBuilder().clearDevices()
+
+            for (device in newDevices) {
+                builder.addDevices(device)
+            }
+
+            builder.build()
+        }
     }
 }

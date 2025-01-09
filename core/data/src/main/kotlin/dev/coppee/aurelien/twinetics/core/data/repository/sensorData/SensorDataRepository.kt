@@ -27,5 +27,4 @@ interface SensorDataRepository {
 
     suspend fun addSensor(sensor: SensorData)
     suspend fun removeSensor(address: String)
-    suspend fun setSensorActive(address: String, active: Boolean)
 }

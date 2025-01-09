@@ -16,7 +16,19 @@
 
 package dev.coppee.aurelien.twinetics.feature.bluetooth
 
+import android.app.Activity
+import android.bluetooth.BluetoothDevice
+import android.companion.AssociationInfo
+import android.companion.AssociationRequest
+import android.companion.BluetoothDeviceFilter
+import android.companion.CompanionDeviceManager
+import android.content.Context
+import android.content.IntentSender
+import android.os.Build
 import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.IntentSenderRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Arrangement
@@ -61,6 +73,7 @@ import dev.coppee.aurelien.twinetics.core.designsystem.paddingValues.Rn3PaddingV
 import dev.coppee.aurelien.twinetics.core.designsystem.paddingValues.padding
 import dev.coppee.aurelien.twinetics.core.feedback.FeedbackContext.FeedbackScreenContext
 import dev.coppee.aurelien.twinetics.core.feedback.navigateToFeedback
+import dev.coppee.aurelien.twinetics.core.model.data.SensorData
 import dev.coppee.aurelien.twinetics.core.ui.TrackScreenViewEvent
 import dev.coppee.aurelien.twinetics.core.user.Rn3User.SignedInUser
 import dev.coppee.aurelien.twinetics.feature.bluetooth.R.string
@@ -69,6 +82,7 @@ import dev.coppee.aurelien.twinetics.feature.bluetooth.model.BluetoothUiState.Su
 import dev.coppee.aurelien.twinetics.feature.bluetooth.model.BluetoothViewModel
 import dev.coppee.aurelien.twinetics.feature.bluetooth.model.data.BluetoothData
 import dev.coppee.aurelien.twinetics.feature.bluetooth.ui.Rn3BluetoothTileClick
+import java.util.concurrent.Executor
 
 @Composable
 internal fun BluetoothRoute(
@@ -93,6 +107,7 @@ internal fun BluetoothRoute(
             onSettingsTopAppBarActionClicked = navigateToSettings,
             onHistoryBottomBarItemClicked = navigateToHistory,
             onRecordBottomBarItemClicked = navigateToRecord,
+            onAddSensor = viewModel::addSensor,
         )
     }
 
@@ -108,6 +123,7 @@ internal fun BluetoothScreen(
     onSettingsTopAppBarActionClicked: () -> Unit = {},
     onHistoryBottomBarItemClicked: () -> Unit = {},
     onRecordBottomBarItemClicked: () -> Unit = {},
+    onAddSensor: (sensorData: SensorData) -> Unit = {},
 ) {
     val haptic = getHaptic()
     val context = LocalContext.current
@@ -121,6 +137,68 @@ internal fun BluetoothScreen(
             .collect { scrollPosition ->
                 fabExpanded.value = scrollPosition == 0
             }
+    }
+
+    val deviceManager = remember {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            context.getSystemService(Context.COMPANION_DEVICE_SERVICE) as CompanionDeviceManager
+        } else {
+            TODO("VERSION.SDK_INT < O")
+        }
+    }
+
+    val executor = remember {
+        Executor { runnable -> runnable.run() }
+    }
+
+    val selectDeviceLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.StartIntentSenderForResult()
+    ) { activityResult ->
+        if (activityResult.resultCode == Activity.RESULT_OK) {
+            val bluetoothDevice = activityResult.data
+                ?.getParcelableExtra<BluetoothDevice>(CompanionDeviceManager.EXTRA_DEVICE)
+            bluetoothDevice?.createBond()
+        }
+    }
+
+    fun startAssociation() {
+        val deviceFilter = BluetoothDeviceFilter.Builder().build()
+
+        val pairingRequest = AssociationRequest.Builder()
+            .addDeviceFilter(deviceFilter)
+            .setSingleDevice(false)
+            .build()
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            deviceManager.associate(
+                pairingRequest,
+                executor,
+                object : CompanionDeviceManager.Callback() {
+                    override fun onAssociationPending(intentSender: IntentSender) {
+                        selectDeviceLauncher.launch(
+                            IntentSenderRequest.Builder(intentSender).build()
+                        )
+                    }
+
+                    override fun onAssociationCreated(associationInfo: AssociationInfo) {
+                        val associationId = associationInfo.id
+                        val macAddress = associationInfo.deviceMacAddress
+                        val displayName = associationInfo.displayName
+
+                        onAddSensor(
+                            SensorData(
+                                address = macAddress.toString(),
+                                name = displayName.toString(),
+                                type = ""
+                            )
+                        )
+                    }
+
+                    override fun onFailure(errorMessage: CharSequence?) {
+                    }
+                }
+            )
+        }
     }
 
     val add = when (data.user) {
@@ -175,7 +253,7 @@ internal fun BluetoothScreen(
                 text = { Text(text = stringResource(string.feature_bluetooth_fab_text)) },
                 icon = { Icon(imageVector = Outlined.Add, contentDescription = null) },
                 onClick = {
-                    data.sensors.
+                    startAssociation()
 
                     haptic.click()
                 },

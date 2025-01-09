@@ -83,13 +83,3 @@ internal fun AnalyticsHelper.logSensorRemoved(address: String) =
             ),
         ),
     )
-
-internal fun AnalyticsHelper.logSensorActivated(address: String, active: Boolean) =
-    logEvent(
-        AnalyticsEvent(
-            type = "crashlytics_sensor_changed",
-            extras = listOf(
-                Param(key = "sensor_activated", value = address + active.toString()),
-            ),
-        ),
-    )

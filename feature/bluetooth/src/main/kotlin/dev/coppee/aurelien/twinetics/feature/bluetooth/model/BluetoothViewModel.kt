@@ -21,6 +21,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.coppee.aurelien.twinetics.core.auth.AuthHelper
 import dev.coppee.aurelien.twinetics.core.data.repository.sensorData.SensorDataRepository
+import dev.coppee.aurelien.twinetics.core.model.data.SensorData
 import dev.coppee.aurelien.twinetics.feature.bluetooth.model.BluetoothUiState.Loading
 import dev.coppee.aurelien.twinetics.feature.bluetooth.model.BluetoothUiState.Success
 import dev.coppee.aurelien.twinetics.feature.bluetooth.model.data.BluetoothData
@@ -28,6 +29,7 @@ import kotlinx.coroutines.flow.SharingStarted.Companion.WhileSubscribed
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.time.Duration.Companion.seconds
 
@@ -36,6 +38,12 @@ class BluetoothViewModel @Inject constructor(
     authHelper: AuthHelper,
     private val sensorDataRepository: SensorDataRepository,
 ) : ViewModel() {
+
+    fun addSensor(sensorData: SensorData) {
+        viewModelScope.launch {
+            sensorDataRepository.addSensor(sensorData)
+        }
+    }
 
     val uiState: StateFlow<BluetoothUiState> =
         combine(

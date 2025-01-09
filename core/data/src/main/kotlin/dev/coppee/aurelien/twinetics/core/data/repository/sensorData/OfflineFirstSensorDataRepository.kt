@@ -17,7 +17,6 @@
 package dev.coppee.aurelien.twinetics.core.data.repository.sensorData
 
 import dev.coppee.aurelien.twinetics.core.analytics.AnalyticsHelper
-import dev.coppee.aurelien.twinetics.core.data.repository.logSensorActivated
 import dev.coppee.aurelien.twinetics.core.data.repository.logSensorAdded
 import dev.coppee.aurelien.twinetics.core.data.repository.logSensorRemoved
 import dev.coppee.aurelien.twinetics.core.datastore.Rn3SensorDataSource
@@ -40,10 +39,5 @@ internal class OfflineFirstSensorDataRepository @Inject constructor(
     override suspend fun removeSensor(address: String) {
         rn3SensorDataSource.removeSensorByAddress(address)
         analyticsHelper.logSensorRemoved(address)
-    }
-
-    override suspend fun setSensorActive(address: String, active: Boolean) {
-        rn3SensorDataSource.updateSensorIsActive(address, active)
-        analyticsHelper.logSensorActivated(address, active)
     }
 }

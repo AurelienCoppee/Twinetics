@@ -42,8 +42,4 @@ class FakeSensorDataRepository @Inject constructor(
     override suspend fun removeSensor(address: String) {
         rn3SensorDataSource.removeSensorByAddress(address)
     }
-
-    override suspend fun setSensorActive(address: String, active: Boolean) {
-        rn3SensorDataSource.updateSensorIsActive(address, active)
-    }
 }
