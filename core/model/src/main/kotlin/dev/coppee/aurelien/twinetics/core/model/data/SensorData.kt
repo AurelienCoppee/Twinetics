@@ -16,8 +16,11 @@
 
 package dev.coppee.aurelien.twinetics.core.model.data
 
+import android.bluetooth.BluetoothDevice
+
 data class SensorData(
+    val id: Int,
     val address: String,
     val name: String,
-    val type: String,
+    val device: BluetoothDevice?,
 )

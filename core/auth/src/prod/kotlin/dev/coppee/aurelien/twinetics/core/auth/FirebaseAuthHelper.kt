@@ -110,18 +110,19 @@ internal class FirebaseAuthHelper @Inject constructor() : AuthHelper {
     override fun getUser(): dev.coppee.aurelien.twinetics.core.user.Rn3User =
         if (finishedLoading) Firebase.auth.currentUser.toRn3User(claims.value) else dev.coppee.aurelien.twinetics.core.user.Rn3User.Loading
 
-    override fun getUserFlow(): Flow<dev.coppee.aurelien.twinetics.core.user.Rn3User> = callbackFlow {
-        val authStateListener = FirebaseAuth.AuthStateListener { auth ->
-            trySend(auth.currentUser)
+    override fun getUserFlow(): Flow<dev.coppee.aurelien.twinetics.core.user.Rn3User> =
+        callbackFlow {
+            val authStateListener = FirebaseAuth.AuthStateListener { auth ->
+                trySend(auth.currentUser)
+            }
+            Firebase.auth.addAuthStateListener(authStateListener)
+            awaitClose {
+                Firebase.auth.removeAuthStateListener(authStateListener)
+            }
+        }.combine(claims) { user, claims ->
+            finishedLoading = true
+            user.toRn3User(claims)
         }
-        Firebase.auth.addAuthStateListener(authStateListener)
-        awaitClose {
-            Firebase.auth.removeAuthStateListener(authStateListener)
-        }
-    }.combine(claims) { user, claims ->
-        finishedLoading = true
-        user.toRn3User(claims)
-    }
 
     private fun FirebaseUser?.toRn3User(claims: Map<String, Any>): dev.coppee.aurelien.twinetics.core.user.Rn3User {
         with(this) {

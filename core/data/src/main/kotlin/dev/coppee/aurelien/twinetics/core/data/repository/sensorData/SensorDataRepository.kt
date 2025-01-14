@@ -24,7 +24,4 @@ interface SensorDataRepository {
      * Stream of [SensorData]
      */
     val sensorsFlow: Flow<List<SensorData>>
-
-    suspend fun addSensor(sensor: SensorData)
-    suspend fun removeSensor(address: String)
 }

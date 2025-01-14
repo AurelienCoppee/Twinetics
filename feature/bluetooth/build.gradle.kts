@@ -33,6 +33,6 @@ dependencies {
     implementation(libs.libphonenumber)
 
     implementation(projects.core.data)
-    implementation(project(":core:shapes"))
-    implementation(project(":core:bluetooth"))
+    implementation(projects.core.shapes)
+    implementation(projects.core.bluetooth)
 }

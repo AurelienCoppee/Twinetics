@@ -16,18 +16,17 @@
 
 package dev.coppee.aurelien.twinetics.core.datastore.di
 
+import android.companion.CompanionDeviceManager
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.DataStoreFactory
 import androidx.datastore.dataStoreFile
-import coppee.aurelien.twinetics.core.datastore.SensorList
 import coppee.aurelien.twinetics.core.datastore.UserPreferences
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import dev.coppee.aurelien.twinetics.core.datastore.SensorSerializer
 import dev.coppee.aurelien.twinetics.core.datastore.UserPreferencesSerializer
 import dev.coppee.aurelien.twinetics.core.network.Dispatcher
 import dev.coppee.aurelien.twinetics.core.network.Rn3Dispatchers
@@ -57,16 +56,9 @@ object DataStoreModule {
 
     @Provides
     @Singleton
-    internal fun providesSensorDataStore(
+    fun provideCompanionDeviceManager(
         @ApplicationContext context: Context,
-        @Dispatcher(Rn3Dispatchers.IO) ioDispatcher: CoroutineDispatcher,
-        @ApplicationScope scope: CoroutineScope,
-        sensorSerializer: SensorSerializer,
-    ): DataStore<SensorList> =
-        DataStoreFactory.create(
-            serializer = sensorSerializer,
-            scope = CoroutineScope(context = scope.coroutineContext + ioDispatcher),
-        ) {
-            context.dataStoreFile(fileName = "RahNeil_N3:sensor.pb")
-        }
+    ): CompanionDeviceManager {
+        return context.getSystemService(CompanionDeviceManager::class.java)
+    }
 }

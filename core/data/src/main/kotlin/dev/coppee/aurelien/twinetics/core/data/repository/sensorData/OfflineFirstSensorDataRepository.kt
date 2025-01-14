@@ -16,28 +16,20 @@
 
 package dev.coppee.aurelien.twinetics.core.data.repository.sensorData
 
-import dev.coppee.aurelien.twinetics.core.analytics.AnalyticsHelper
-import dev.coppee.aurelien.twinetics.core.data.repository.logSensorAdded
-import dev.coppee.aurelien.twinetics.core.data.repository.logSensorRemoved
-import dev.coppee.aurelien.twinetics.core.datastore.Rn3SensorDataSource
+import android.annotation.SuppressLint
+import android.companion.CompanionDeviceManager
+import dev.coppee.aurelien.twinetics.core.bluetooth.companion.getAssociatedDevices
 import dev.coppee.aurelien.twinetics.core.model.data.SensorData
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-internal class OfflineFirstSensorDataRepository @Inject constructor(
-    private val rn3SensorDataSource: Rn3SensorDataSource,
-    private val analyticsHelper: AnalyticsHelper,
+internal class OfflineFirstSensorDataRepository
+@Inject constructor(
+    @SuppressLint("NewApi") private val companionDeviceManager: CompanionDeviceManager,
 ) : SensorDataRepository {
 
-    override val sensorsFlow: Flow<List<SensorData>> = rn3SensorDataSource.sensorsFlow
-
-    override suspend fun addSensor(sensor: SensorData) {
-        rn3SensorDataSource.addSensor(sensor)
-        analyticsHelper.logSensorAdded(sensor)
-    }
-
-    override suspend fun removeSensor(address: String) {
-        rn3SensorDataSource.removeSensorByAddress(address)
-        analyticsHelper.logSensorRemoved(address)
+    override val sensorsFlow: Flow<List<SensorData>> = flow {
+        emit(companionDeviceManager.getAssociatedDevices())
     }
 }

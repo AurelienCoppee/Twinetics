@@ -16,10 +16,11 @@
 
 package dev.coppee.aurelien.twinetics.feature.bluetooth
 
+import android.annotation.SuppressLint
 import android.bluetooth.BluetoothAdapter
-import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
 import android.companion.CompanionDeviceManager
+import android.os.Build
 import android.widget.Toast
 import androidx.activity.compose.ManagedActivityResultLauncher
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -49,6 +50,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
@@ -62,6 +64,7 @@ import androidx.core.content.getSystemService
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
+import dev.coppee.aurelien.twinetics.core.bluetooth.companion.getAssociatedDevices
 import dev.coppee.aurelien.twinetics.core.bluetooth.companion.getAssociationResult
 import dev.coppee.aurelien.twinetics.core.designsystem.BottomBarItem
 import dev.coppee.aurelien.twinetics.core.designsystem.R.color
@@ -73,7 +76,6 @@ import dev.coppee.aurelien.twinetics.core.designsystem.paddingValues.Rn3PaddingV
 import dev.coppee.aurelien.twinetics.core.designsystem.paddingValues.padding
 import dev.coppee.aurelien.twinetics.core.feedback.FeedbackContext.FeedbackScreenContext
 import dev.coppee.aurelien.twinetics.core.feedback.navigateToFeedback
-import dev.coppee.aurelien.twinetics.core.model.data.SensorData
 import dev.coppee.aurelien.twinetics.core.ui.TrackScreenViewEvent
 import dev.coppee.aurelien.twinetics.core.user.Rn3User.SignedInUser
 import dev.coppee.aurelien.twinetics.feature.bluetooth.R.string
@@ -81,7 +83,7 @@ import dev.coppee.aurelien.twinetics.feature.bluetooth.model.BluetoothUiState.Lo
 import dev.coppee.aurelien.twinetics.feature.bluetooth.model.BluetoothUiState.Success
 import dev.coppee.aurelien.twinetics.feature.bluetooth.model.BluetoothViewModel
 import dev.coppee.aurelien.twinetics.feature.bluetooth.model.data.BluetoothData
-import dev.coppee.aurelien.twinetics.feature.bluetooth.ui.DevicesScreen
+import dev.coppee.aurelien.twinetics.feature.bluetooth.ui.Rn3BluetoothTileClick
 
 @Composable
 internal fun BluetoothRoute(
@@ -106,7 +108,6 @@ internal fun BluetoothRoute(
             onSettingsTopAppBarActionClicked = navigateToSettings,
             onHistoryBottomBarItemClicked = navigateToHistory,
             onRecordBottomBarItemClicked = navigateToRecord,
-            onAddSensor = viewModel::addSensor,
             deviceAssociation = viewModel::deviceAssociation,
         )
     }
@@ -123,7 +124,6 @@ internal fun BluetoothScreen(
     onSettingsTopAppBarActionClicked: () -> Unit = {},
     onHistoryBottomBarItemClicked: () -> Unit = {},
     onRecordBottomBarItemClicked: () -> Unit = {},
-    onAddSensor: (sensorData: SensorData) -> Unit = {},
     deviceAssociation: (deviceManager: CompanionDeviceManager, selectDeviceLauncher: ManagedActivityResultLauncher<IntentSenderRequest, ActivityResult>) -> Unit = { companionDeviceManager: CompanionDeviceManager, managedActivityResultLauncher: ManagedActivityResultLauncher<IntentSenderRequest, ActivityResult> -> },
 ) {
     val haptic = getHaptic()
@@ -147,14 +147,8 @@ internal fun BluetoothScreen(
     ) {
         when (it.resultCode) {
             CompanionDeviceManager.RESULT_OK -> {
-                it.data?.getAssociationResult()?.run {
-                    onAddSensor(
-                        SensorData(
-                            address = this.address,
-                            name = this.name,
-                            type = "",
-                        )
-                    )
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    it.data?.getAssociationResult()
                 }
             }
         }
@@ -247,6 +241,7 @@ internal fun BluetoothScreen(
     }
 }
 
+@SuppressLint("MissingPermission")
 @Composable
 private fun ColumnPanel(
     paddingValues: Rn3PaddingValues,
@@ -255,15 +250,22 @@ private fun ColumnPanel(
     deviceManager: CompanionDeviceManager?,
     adapter: BluetoothAdapter?,
 ) {
-    var selectedDevice by remember {
-        mutableStateOf<BluetoothDevice?>(null)
-    }
+    val scope = rememberCoroutineScope()
 
     if (deviceManager != null && adapter != null) {
-        DevicesScreen(deviceManager) { device ->
-            selectedDevice = (device.device ?: adapter.getRemoteDevice(device.address))
+        var associatedDevices by remember {
+            mutableStateOf(deviceManager.getAssociatedDevices())
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            LaunchedEffect(associatedDevices) {
+                associatedDevices.forEach {
+                    deviceManager.startObservingDevicePresence(it.address)
+                }
+            }
         }
     }
+
     Column(
         modifier = Modifier
             .verticalScroll(scrollState)
@@ -272,5 +274,10 @@ private fun ColumnPanel(
         horizontalAlignment = CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
+        data.sensors.forEach { sensor ->
+            Rn3BluetoothTileClick(
+                sensor = sensor,
+            )
+        }
     }
 }

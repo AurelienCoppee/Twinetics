@@ -40,7 +40,6 @@ dependencies {
     api(projects.core.common)
 
     implementation(projects.core.designsystem)
-    implementation (libs.libphonenumber)
 
     testImplementation(projects.core.datastoreTest)
     testImplementation(libs.kotlinx.coroutines.test)

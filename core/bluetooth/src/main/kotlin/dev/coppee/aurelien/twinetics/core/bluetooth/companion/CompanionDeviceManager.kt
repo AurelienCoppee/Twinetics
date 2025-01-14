@@ -27,12 +27,13 @@ import androidx.activity.compose.ManagedActivityResultLauncher
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.IntentSenderRequest
 import androidx.annotation.RequiresApi
+import dev.coppee.aurelien.twinetics.core.model.data.SensorData
 import kotlinx.coroutines.CompletableDeferred
 import java.util.concurrent.Executor
 
 @RequiresApi(Build.VERSION_CODES.O)
-fun Intent.getAssociationResult(): AssociatedDeviceCompat? {
-    var result: AssociatedDeviceCompat? = null
+fun Intent.getAssociationResult(): SensorData? {
+    var result: SensorData? = null
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
         result = getParcelableExtra(
             CompanionDeviceManager.EXTRA_ASSOCIATION,
@@ -46,7 +47,7 @@ fun Intent.getAssociationResult(): AssociatedDeviceCompat? {
         @Suppress("DEPRECATION")
         val scanResult = getParcelableExtra<ScanResult>(CompanionDeviceManager.EXTRA_DEVICE)
         if (scanResult != null) {
-            result = AssociatedDeviceCompat(
+            result = SensorData(
                 id = scanResult.advertisingSid,
                 address = scanResult.device.address ?: "N/A",
                 name = scanResult.scanRecord?.deviceName ?: "N/A",
@@ -58,7 +59,11 @@ fun Intent.getAssociationResult(): AssociatedDeviceCompat? {
 }
 
 
-suspend fun requestDeviceAssociation(deviceManager: CompanionDeviceManager, selectDeviceLauncher: ManagedActivityResultLauncher<IntentSenderRequest, ActivityResult>): IntentSender {
+@RequiresApi(Build.VERSION_CODES.O)
+suspend fun requestDeviceAssociation(
+    deviceManager: CompanionDeviceManager,
+    selectDeviceLauncher: ManagedActivityResultLauncher<IntentSenderRequest, ActivityResult>,
+): IntentSender {
     val pairingRequest: AssociationRequest = AssociationRequest.Builder()
         .setSingleDevice(false)
         .build()
@@ -68,7 +73,7 @@ suspend fun requestDeviceAssociation(deviceManager: CompanionDeviceManager, sele
     val callback = object : CompanionDeviceManager.Callback() {
         override fun onAssociationPending(intentSender: IntentSender) {
             selectDeviceLauncher.launch(
-                IntentSenderRequest.Builder(intentSender).build()
+                IntentSenderRequest.Builder(intentSender).build(),
             )
         }
 

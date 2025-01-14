@@ -16,44 +16,36 @@
 
 package dev.coppee.aurelien.twinetics.core.bluetooth.companion
 
-import android.bluetooth.BluetoothDevice
 import android.companion.AssociationInfo
 import android.companion.CompanionDeviceManager
 import android.os.Build
 import androidx.annotation.RequiresApi
+import dev.coppee.aurelien.twinetics.core.model.data.SensorData
 
-/**
- * Wrapper for the different type of classes the CDM returns
- */
-data class AssociatedDeviceCompat(
-    val id: Int,
-    val address: String,
-    val name: String,
-    val device: BluetoothDevice?,
-)
-
-@RequiresApi(Build.VERSION_CODES.O)
-fun CompanionDeviceManager.getAssociatedDevices(): List<AssociatedDeviceCompat> {
-    val associatedDevice = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-        myAssociations.map { it.toAssociatedDevice() }
-    } else {
-        // Before Android 34 we can only get the MAC. We could use the BT adapter to find the
-        // device, but to use CDM we only need the MAC.
-        @Suppress("DEPRECATION")
-        associations.map {
-            AssociatedDeviceCompat(
-                id = -1,
-                address = it,
-                name = "",
-                device = null,
-            )
+fun CompanionDeviceManager.getAssociatedDevices(): List<SensorData> {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            myAssociations.map { it.toAssociatedDevice() }
+        } else {
+            // Before Android 34 we can only get the MAC. We could use the BT adapter to find the
+            // device, but to use CDM we only need the MAC.
+            @Suppress("DEPRECATION")
+            associations.map {
+                SensorData(
+                    id = -1,
+                    address = it,
+                    name = "",
+                    device = null,
+                )
+            }
         }
+    } else {
+        emptyList()
     }
-    return associatedDevice
 }
 
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)
-internal fun AssociationInfo.toAssociatedDevice() = AssociatedDeviceCompat(
+internal fun AssociationInfo.toAssociatedDevice() = SensorData(
     id = id,
     address = deviceMacAddress?.toString() ?: "N/A",
     name = displayName?.ifBlank { "N/A" }?.toString() ?: "N/A",

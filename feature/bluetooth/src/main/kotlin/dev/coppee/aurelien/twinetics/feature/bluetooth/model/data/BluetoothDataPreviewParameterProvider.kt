@@ -46,9 +46,10 @@ object PreviewParameterData {
             SensorData(
                 address = "",
                 name = "Heart Rate Monitor",
-                type = "",
-            )
-        )
+                id = -1,
+                device = TODO(),
+            ),
+        ),
     )
     val bluetoothData_mutations = with(bluetoothData_default) {
         sequenceOf(

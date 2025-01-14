@@ -69,16 +69,16 @@ internal fun FeedbackDescriptionPage(
 
         FeedbackMessages(
             messages =
-            listOf(
-                if (bug) {
-                    stringResource(string.core_feedback_descriptionPage_bugMessage)
-                } else {
-                    stringResource(
-                        string.core_feedback_descriptionPage_suggestionMessage,
-                    )
-                },
-                stringResource(string.core_feedback_descriptionPage_personalInfoMessage),
-            ),
+                listOf(
+                    if (bug) {
+                        stringResource(string.core_feedback_descriptionPage_bugMessage)
+                    } else {
+                        stringResource(
+                            string.core_feedback_descriptionPage_suggestionMessage,
+                        )
+                    },
+                    stringResource(string.core_feedback_descriptionPage_personalInfoMessage),
+                ),
         )
 
         TextField(

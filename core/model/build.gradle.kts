@@ -15,11 +15,12 @@
  */
 
 plugins {
-    alias(libs.plugins.rn3.jvm.library)
+    alias(libs.plugins.rn3.android.library)
+}
+
+android {
+    namespace = "dev.coppee.aurelien.twinetics.core.model"
 }
 
 dependencies {
-    api(libs.kotlinx.datetime)
-
-    implementation(libs.libphonenumber)
 }

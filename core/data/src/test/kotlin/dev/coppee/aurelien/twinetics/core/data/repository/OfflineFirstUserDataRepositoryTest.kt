@@ -35,8 +35,10 @@ class OfflineFirstUserDataRepositoryTest {
     private lateinit var subject: OfflineFirstUserDataRepository
     private lateinit var rn3UserPreferencesDataSource: Rn3UserPreferencesDataSource
     private val analyticsHelper = NoOpAnalyticsHelper()
+
     @get:Rule
     val tmpFolder: TemporaryFolder = TemporaryFolder.builder().assureDeletion().build()
+
     @Before
     fun setup() {
         rn3UserPreferencesDataSource = Rn3UserPreferencesDataSource(
@@ -47,6 +49,7 @@ class OfflineFirstUserDataRepositoryTest {
             analyticsHelper = analyticsHelper,
         )
     }
+
     @Test
     fun offlineFirstUserDataRepository_default_user_data_is_correct() =
         testScope.runTest {

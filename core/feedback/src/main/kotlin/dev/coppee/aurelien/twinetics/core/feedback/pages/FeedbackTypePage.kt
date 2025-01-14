@@ -60,10 +60,10 @@ internal fun FeedbackTypePage(feedbackType: String, nextPage: (String) -> Unit) 
 
         FeedbackMessages(
             messages =
-            listOf(
-                stringResource(string.core_feedback_typePage_welcomeMessage),
-                stringResource(string.core_feedback_typePage_typeMessage),
-            ),
+                listOf(
+                    stringResource(string.core_feedback_typePage_welcomeMessage),
+                    stringResource(string.core_feedback_typePage_typeMessage),
+                ),
         )
 
         AnimatedVisibility(
@@ -77,12 +77,12 @@ internal fun FeedbackTypePage(feedbackType: String, nextPage: (String) -> Unit) 
         ) {
             FeedbackOptions(
                 options =
-                mapOf(
-                    "BUG" to stringResource(string.core_feedback_typePage_bug),
-                    "FEATURE" to stringResource(
-                        string.core_feedback_typePage_suggestion,
+                    mapOf(
+                        "BUG" to stringResource(string.core_feedback_typePage_bug),
+                        "FEATURE" to stringResource(
+                            string.core_feedback_typePage_suggestion,
+                        ),
                     ),
-                ),
                 currentType,
             ) { currentType = it }
         }

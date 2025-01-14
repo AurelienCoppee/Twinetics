@@ -47,6 +47,7 @@ internal class OfflineFirstUserDataRepository @Inject constructor(
         rn3UserPreferencesDataSource.setMetricsEnabledPreference(value)
         analyticsHelper.logMetricsPreferenceChanged(value)
     }
+
     override suspend fun setCrashlyticsEnabled(value: Boolean) {
         rn3UserPreferencesDataSource.setCrashlyticsEnabledPreference(value)
         analyticsHelper.logCrashlyticsPreferenceChanged(value)
@@ -55,5 +56,6 @@ internal class OfflineFirstUserDataRepository @Inject constructor(
     override suspend fun setShouldShowLoginScreenOnStartup(value: Boolean) =
         rn3UserPreferencesDataSource.setShouldShowLoginScreenOnStartup(value)
 
-    override suspend fun setNotAppFirstLaunch() = rn3UserPreferencesDataSource.setNotAppFirstLaunch()
+    override suspend fun setNotAppFirstLaunch() =
+        rn3UserPreferencesDataSource.setNotAppFirstLaunch()
 }

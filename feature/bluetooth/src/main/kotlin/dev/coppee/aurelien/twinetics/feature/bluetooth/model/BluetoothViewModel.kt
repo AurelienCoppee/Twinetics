@@ -26,7 +26,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.coppee.aurelien.twinetics.core.auth.AuthHelper
 import dev.coppee.aurelien.twinetics.core.bluetooth.companion.requestDeviceAssociation
 import dev.coppee.aurelien.twinetics.core.data.repository.sensorData.SensorDataRepository
-import dev.coppee.aurelien.twinetics.core.model.data.SensorData
 import dev.coppee.aurelien.twinetics.feature.bluetooth.model.BluetoothUiState.Loading
 import dev.coppee.aurelien.twinetics.feature.bluetooth.model.BluetoothUiState.Success
 import dev.coppee.aurelien.twinetics.feature.bluetooth.model.data.BluetoothData
@@ -44,12 +43,10 @@ class BluetoothViewModel @Inject constructor(
     private val sensorDataRepository: SensorDataRepository,
 ) : ViewModel() {
 
-    fun addSensor(sensorData: SensorData) {
-        viewModelScope.launch {
-            sensorDataRepository.addSensor(sensorData)
-        }
-    }
-    fun deviceAssociation(deviceManager: CompanionDeviceManager, selectDeviceLauncher: ManagedActivityResultLauncher<IntentSenderRequest, ActivityResult>) {
+    fun deviceAssociation(
+        deviceManager: CompanionDeviceManager,
+        selectDeviceLauncher: ManagedActivityResultLauncher<IntentSenderRequest, ActivityResult>,
+    ) {
         viewModelScope.launch {
             requestDeviceAssociation(deviceManager, selectDeviceLauncher)
         }
@@ -60,13 +57,13 @@ class BluetoothViewModel @Inject constructor(
             authHelper.getUserFlow(),
             sensorDataRepository.sensorsFlow,
         ) { user, sensors ->
-                Success(
-                    BluetoothData(
-                        user = user,
-                        sensors = sensors,
-                    )
-                )
-            }
+            Success(
+                BluetoothData(
+                    user = user,
+                    sensors = sensors,
+                ),
+            )
+        }
             .stateIn(
                 scope = viewModelScope,
                 initialValue = Loading,
