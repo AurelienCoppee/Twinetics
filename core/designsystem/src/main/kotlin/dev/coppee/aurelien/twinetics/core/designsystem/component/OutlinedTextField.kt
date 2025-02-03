@@ -120,7 +120,7 @@ fun Rn3OutlinedTextField(
     keyboardOptions: KeyboardOptions = KeyboardOptions(),
 ) {
     var isEmpty by rememberSaveable { mutableStateOf(value.text.isEmpty()) }
-    val isTooLarge = maxCharacters?.let { value.text.length >= it } ?: false
+Up    val isTooLarge = maxCharacters?.let { value.text.length >= it } == true
 
     LaunchedEffect(value) {
         isEmpty = value.text.isEmpty()
@@ -155,7 +155,7 @@ fun Rn3OutlinedTextField(
                 isTooLarge -> Text(
                     text = stringResource(
                         string.core_designsystem_limitCharactersReached,
-                        maxCharacters!!,
+                        maxCharacters,
                     ),
                     color = MaterialTheme.colorScheme.error,
                 )
@@ -171,14 +171,14 @@ fun Rn3OutlinedTextField(
     )
 }
 
+@Composable
 @OptIn(ExperimentalComposeUiApi::class)
 fun Modifier.autofill(
     autofillTypes: AutofillType?,
     onFill: ((String) -> Unit),
     enableAutofill: Boolean = true,
 ) = if (enableAutofill) {
-    composed {
-        val types = autofillTypes
+    val types = autofillTypes
             ?: throw IllegalArgumentException("autofillTypes must be provided when enableAutofill is true")
 
         val autofill = LocalAutofill.current
@@ -198,7 +198,6 @@ fun Modifier.autofill(
                     }
                 }
             }
-    }
 } else {
     this
 }

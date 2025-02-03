@@ -19,5 +19,4 @@ package dev.coppee.aurelien.twinetics.core.accessibility
 class AccessibilityHelper(
     val hasEmphasizedSwitchesEnabled: Boolean = false,
     val hasIconTooltipsEnabled: Boolean = true,
-    val hasAltTextEnabled: Boolean = false,
 )

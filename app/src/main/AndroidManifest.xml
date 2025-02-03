@@ -29,7 +29,8 @@
 
     <uses-permission
         android:name="android.permission.BLUETOOTH_SCAN"
-        android:usesPermissionFlags="neverForLocation" />
+        android:usesPermissionFlags="neverForLocation"
+        tools:targetApi="31" />
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
 
     <uses-permission android:name="android.permission.REQUEST_OBSERVE_COMPANION_DEVICE_PRESENCE" />
@@ -59,7 +60,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Rn3.Splash"
         android:windowSoftInputMode="adjustResize"
-        tools:targetApi="tiramisu">
+        tools:targetApi="35">
         <profileable
             android:shell="true"
             tools:targetApi="q" />

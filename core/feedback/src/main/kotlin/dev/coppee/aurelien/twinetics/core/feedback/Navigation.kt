@@ -79,9 +79,9 @@ fun NavGraphBuilder.feedbackDialog(navController: NavController) {
             pageDef = it.arguments?.getString("page") ?: "type",
             typeDef = it.arguments?.getString("type") ?: "BUG",
             descriptionDef = it.arguments?.getString("description") ?: "",
-            onCurrentPageDef = it.arguments?.getBoolean("onCurrentPage") ?: true,
-            sendScreenshotDef = it.arguments?.getBoolean("sendScreenshot") ?: false,
-            sendAdditionalInfoDef = it.arguments?.getBoolean("sendAdditionalInfo") ?: true,
+            onCurrentPageDef = it.arguments?.getBoolean("onCurrentPage") != false,
+            sendScreenshotDef = it.arguments?.getBoolean("sendScreenshot") == true,
+            sendAdditionalInfoDef = it.arguments?.getBoolean("sendAdditionalInfo") != false,
         )
     }
 }

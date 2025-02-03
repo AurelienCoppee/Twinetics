@@ -147,9 +147,7 @@ internal fun BluetoothScreen(
     ) {
         when (it.resultCode) {
             CompanionDeviceManager.RESULT_OK -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    it.data?.getAssociationResult()
-                }
+                it.data?.getAssociationResult()
             }
         }
     }

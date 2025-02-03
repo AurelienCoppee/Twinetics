@@ -63,23 +63,3 @@ internal fun AnalyticsHelper.logCrashlyticsPreferenceChanged(value: Boolean) =
             ),
         ),
     )
-
-internal fun AnalyticsHelper.logSensorAdded(sensor: SensorData) =
-    logEvent(
-        AnalyticsEvent(
-            type = "crashlytics_sensor_added",
-            extras = listOf(
-                Param(key = "sensor_added", value = sensor.address),
-            ),
-        ),
-    )
-
-internal fun AnalyticsHelper.logSensorRemoved(address: String) =
-    logEvent(
-        AnalyticsEvent(
-            type = "crashlytics_sensor_removed",
-            extras = listOf(
-                Param(key = "sensor_removed", value = address),
-            ),
-        ),
-    )

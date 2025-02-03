@@ -31,7 +31,6 @@ import dev.coppee.aurelien.twinetics.core.model.data.SensorData
 import kotlinx.coroutines.CompletableDeferred
 import java.util.concurrent.Executor
 
-@RequiresApi(Build.VERSION_CODES.O)
 fun Intent.getAssociationResult(): SensorData? {
     var result: SensorData? = null
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -59,7 +58,6 @@ fun Intent.getAssociationResult(): SensorData? {
 }
 
 
-@RequiresApi(Build.VERSION_CODES.O)
 suspend fun requestDeviceAssociation(
     deviceManager: CompanionDeviceManager,
     selectDeviceLauncher: ManagedActivityResultLauncher<IntentSenderRequest, ActivityResult>,

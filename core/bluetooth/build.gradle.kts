@@ -26,7 +26,7 @@ android {
 
 dependencies {
     implementation(libs.androidx.foundation.android)
-    implementation(libs.activity.compose)
+    implementation(libs.androidx.activity.compose)
 
     implementation(projects.core.model)
 }
